@@ -6,8 +6,12 @@ $app
         '/',
         function($request, $response)
         {
+            $query = $this->db->query('SELECT * FROM categorie');
+            $categories = $query->fetchAll();
+
             // View data
             $viewData = [];
+            $viewData['categories'] = $categories;
 
             return $this->view->render($response, 'pages/home.twig', $viewData);
         }
@@ -18,37 +22,61 @@ $app
 // Promotions
 $app
     ->get(
-        '/promotions',
+        '/director-of-filming',
         function($request, $response)
         {
             // Fetch promotions
-            $query = $this->db->query('SELECT * FROM promotions');
-            $promotions = $query->fetchAll();
+            $query = $this->db->query('SELECT * FROM categorie');
+            $categories = $query->fetchAll();
 
             // View data
             $viewData = [];
-            $viewData['promotions'] = $promotions;
+            $viewData['categories'] = $categories;
 
-            return $this->view->render($response, 'pages/promotions.twig', $viewData);
+            return $this->view->render($response, 'pages/director.twig', $viewData);
         }
     )
-    ->setName('promotions')
+    ->setName('director')
 ;
 
 // Promotion
 $app
     ->get(
-        '/promotions/{year:[0-9]{4}}',
+        '/cinematographer',
         function($request, $response, $arguments)
         {
+            // Fetch promotions
+            $query = $this->db->query('SELECT * FROM categorie');
+            $categories = $query->fetchAll();
+
             // View data
             $viewData = [];
+            $viewData['categories'] = $categories;
 
-            return $this->view->render($response, 'pages/promotion.twig', $viewData);
+            return $this->view->render($response, 'pages/cinematographer.twig', $viewData);
         }
     )
-    ->setName('promotion')
+    ->setName('cinematographer')
 ;
+
+// $app
+//     ->get(
+//         'Post/director-of-filming',
+//         function($request, $response)
+//         {
+//             // Fetch promotions
+//             $query = $this->db->query('SELECT * FROM categorie');
+//             $categories = $query->fetchAll();
+
+//             // View data
+//             $viewData = [];
+//             $viewData['categories'] = $categories;
+
+//             return $this->view->render($response, 'pages/director.twig', $viewData);
+//         }
+//     )
+//     ->setName('director')
+// ;
 
 // Random student
 $app

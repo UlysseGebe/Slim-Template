@@ -7,6 +7,8 @@ const $pres = document.querySelector('.presentation')
 const $burger = $header.querySelector('.burgermenu')
 const $lines = $burger.querySelector('.lines')
 const $cover = document.querySelectorAll('.cover')
+const $text = $pres.querySelector('p')
+let text = $text.textContent
 
 const see = () => {
     $header.style.backgroundColor = '#ffffff'
@@ -57,7 +59,11 @@ window.addEventListener('resize', () => {
     }
 })
 
+const br = () => {
+    text = text.replace(/(\r\n|\n|\r)/g, '<br>')
+    $text.innerHTML = text
+}
+br()
+ window.addEventListener("load", function(event) {
 
-// window.addEventListener("load", function(event) {
-//     console.log("Toutes les ressources sont chargées !");
-// });
+});

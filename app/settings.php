@@ -11,4 +11,4 @@ $settings['db']['host'] = 'localhost';
 $settings['db']['port'] = '8889';
 $settings['db']['user'] = 'root';
 $settings['db']['pass'] = 'root';
-$settings['db']['name'] = 'hetic_p2022_students';
+$settings['db']['name'] = 'folio';

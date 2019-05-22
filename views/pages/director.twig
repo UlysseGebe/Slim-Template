@@ -1,0 +1,64 @@
+{% include('partials/header.twig') %}
+
+<div class="article">
+    <div class="presentation">
+        <h1>Cesar Cadene</h1>
+        {% for _categorie in categories %}
+            {% if _categorie.categorie_name == 'As director' %}
+                <h2>{{ _categorie.categorie_name }}</h2>
+                <p>{{ _categorie.categorie_content }}</p>
+            {% endif %}
+        {% endfor %}
+        <a class="button" href="{{ path_for('home') }}">home</a>
+        <div class="social">
+            <a target="_blank" href="http://www.instagram.com/cesar_cadene"><img src="../assets/image/icone_instagram.svg" alt="Icone Instagram"></a>
+            <a target="_blank" href="http://www.youtube.com/channel/UCc3qIM6Sp0ukpDpz2IjlG-A"><img src="../assets/image/icone_youtube.svg" alt="Icone Youtube"></a>
+        </div>
+        <svg class="arrows">
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
+    </div>
+    <div class="work">
+        <video src="../assets/video/PROMO_MOTEUR.mp4" poster="../assets/image/Moteur.png" preload="metadata">Concours Moteur! - César CADENE
+        </video>
+        <legend>Short film presented for the "Concours Moteur !" rewarded with the first price. 🎥
+        </legend>
+    </div>
+    <div class="work">
+        <video src="../assets/video/Maladie_damour.mp4" poster="../assets/image/maladie_damour.png">Maladie d'amour - César CADENE
+        </video>
+        <legend>Short film made in 2018.
+        </legend>
+    </div>
+    <div class="work">
+        <video src="../assets/video/Tricheur.mov" poster="../assets/image/tricheur.png">Le tricheur à l'as de carreau - César CADENE
+        </video>
+        <legend>Short film made in school. We had to recreate the painting "le tricheur à l'as de carreaux" from the painter Georges De La Tour
+        </legend>
+    </div>
+    <div class="also">
+        <h4>You may also like</h4>
+        <div class="content">
+            <article onclick="window.location='cinematographer'">
+                <div class="cover">
+                    <img src="../assets/image/babylove.png">
+                </div>
+                <div class="title">
+                    <h3>As cinematographer</h3>
+                    <span>2019</span>
+                </div>
+            </article>
+            <article>
+                <div class="cover">
+                    <img src="../assets/image/acceuil.JPG">
+                </div>
+                <div class="title">
+                    <h3>Photography</h3>
+                    <span>Comming very soon ...</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% include('partials/footer.twig') %}
