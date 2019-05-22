@@ -1,10 +1,45 @@
 {% include('partials/header.twig') %}
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, accusantium, tempora eaque modi quibusdam nemo ipsa consequuntur unde dolor sed quam ullam aspernatur voluptate temporibus nihil architecto odio assumenda possimus.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos nisi deleniti laborum dignissimos labore fuga consectetur, ab nemo corrupti, ut excepturi suscipit necessitatibus veniam asperiores facilis atque. Dignissimos, quis maiores.</p>
+<div class="presentation">
+    <h1>Cesar Cadene</h1>
+    <h2>Hi ! I'm a young film director and cinematographer based in Paris. <br> You can find some of my work here !</h2>
+    <div class="social">
+            <a target="_blank" href="http://www.instagram.com/cesar_cadene"><img src="../assets/image/icone_instagram.svg" alt="Icone Instagram"></a>
+            <a target="_blank" href="http://www.youtube.com/channel/UCc3qIM6Sp0ukpDpz2IjlG-A"><img src="../assets/image/icone_youtube.svg" alt="Icone Youtube"></a>
+    </div>
+    <svg class="arrows">
+        <path class="a3" d="M0 40 L30 72 L60 40"></path>
+    </svg>
+</div>
 
-<a href="{{ path_for('promotions') }}">Promotions</a>
-<br>
-<a href="{{ path_for('random_student') }}">Random student</a>
+<article onclick="window.location='director-of-filming'">
+    <div class="cover">
+        <img src="../assets/image/maladie_damour.png">
+    </div>
+    <div class="title">
+        <h3>As director</h3>
+        <span>2019</span>
+    </div>
+</article>
+
+<article onclick="window.location='cinematographer'">
+    <div class="cover">
+        <img src="../assets/image/babylove.png">
+    </div>
+    <div class="title">
+        <h3>As cinematographer</h3>
+        <span>2019</span>
+    </div>
+</article>
+
+<article>
+    <div class="cover">
+        <img src="../assets/image/acceuil.JPG">
+    </div>
+    <div class="title">
+        <h3>Photography</h3>
+        <span>Comming very soon ...</span>
+    </div>
+</article>
 
 {% include('partials/footer.twig') %}
