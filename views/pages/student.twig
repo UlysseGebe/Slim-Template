@@ -1,0 +1,27 @@
+{% include('partials/header.twig') %}
+
+<h3>Student name</h3>
+<h5><a href="{{ path_for('promotion', { year: 2022 }) }}">P2022</a></h5>
+
+<p>
+    <img src="https://avatars.dicebear.com/v2/male/slug.svg" width="200" height="200" alt="">
+</p>
+
+<table class="table">
+    <tr>
+        <td>Development</td>
+        <td>★★★</td>
+    </tr>
+    <tr>
+        <td>Design</td>
+        <td>★★★</td>
+    </tr>
+    <tr>
+        <td>Marketing</td>
+        <td>★★★</td>
+    </tr>
+</table>
+
+<a href="{{ path_for('random_student') }}">Random student</a>
+
+{% include('partials/footer.twig') %}
