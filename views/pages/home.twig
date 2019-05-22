@@ -18,7 +18,7 @@
 
 {% for _categorie in categories %}
     {% if _categorie.categorie_name != 'Home' %}
-    <article onclick="window.location='{{ _categorie.categorie_link }}'">
+    <article onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'">
         <div class="cover">
             <img src="../assets/image/{{ _categorie.categorie_image }}">
         </div>

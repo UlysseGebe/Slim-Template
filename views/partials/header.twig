@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>César Cadene - Home</title>
+    <title>César Cadene - {{ title }}</title>
     <link rel="icon" type="image/png" href="../assets/image/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style/style.css">
@@ -14,10 +14,10 @@
     <nav>
         <ul>
             <li><a href="{{ path_for('home') }}">Work</a></li>
-            <li><a href="{{ path_for('home') }}">Contact</a></li>
+            <li><a href="{{ path_for('contact') }}">Contact</a></li>
         </ul>
     </nav>
-    <h1><a href="index.html">Cesar Cadene</a></h1>
+    <h1><a href="{{ path_for('home') }}">Cesar Cadene</a></h1>
     <div class="social">
             <a target="_blank" href="http://www.instagram.com/cesar_cadene"><img src="../assets/image/icone_instagram.svg" alt="Icone Instagram"></a>
             <a target="_blank" href="http://www.youtube.com/channel/UCc3qIM6Sp0ukpDpz2IjlG-A"><img src="../assets/image/icone_youtube.svg" alt="Icone Youtube"></a>

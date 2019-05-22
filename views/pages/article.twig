@@ -1,0 +1,45 @@
+{% include('partials/header.twig') %}
+
+<div class="article">
+    <div class="presentation">
+        <h1>Cesar Cadene</h1>
+        {% for _categorie in categorie %}
+                <h2>{{ _categorie.categorie_name }}</h2>
+                <p>{{ _categorie.categorie_content }}</p>
+        {% endfor %}
+        <a class="button" href="{{ path_for('home') }}">home</a>
+        <div class="social">
+            <a target="_blank" href="http://www.instagram.com/cesar_cadene"><img src="../assets/image/icone_instagram.svg" alt="Icone Instagram"></a>
+            <a target="_blank" href="http://www.youtube.com/channel/UCc3qIM6Sp0ukpDpz2IjlG-A"><img src="../assets/image/icone_youtube.svg" alt="Icone Youtube"></a>
+        </div>
+        <svg class="arrows">
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+        </svg>
+    </div>
+    {% for _video in videos %}
+        <div class="work">
+            <video src="../assets/video/{{ _video.video_url }}" poster="../assets/image/{{ _video.video_poster }}">{{ _video.video_fallback }}</video>
+            <legend>{{ _video.video_description }}</legend>
+        </div>
+    {% endfor %}
+    <div class="also">
+        <h4>You may also like</h4>
+        <div class="content">
+            {% for _other in others %}
+                {% if _other.categorie_name != "Home" %}
+                    <article {% if _other.categorie_link != "" %} onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'"{% endif %}>
+                        <div class="cover">
+                            <img src="../assets/image/{{ _other.categorie_image }}">
+                        </div>
+                        <div class="title">
+                            <h3>{{ _other.categorie_name }}</h3>
+                            <span>{{ _othercategorie_legend }}</span>
+                        </div>
+                    </article>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include('partials/footer.twig') %}

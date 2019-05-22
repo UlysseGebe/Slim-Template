@@ -8,10 +8,12 @@ $app
         {
             $query = $this->db->query('SELECT * FROM categorie');
             $categories = $query->fetchAll();
+            $title = 'Portfolio';
 
             // View data
             $viewData = [];
             $viewData['categories'] = $categories;
+            $viewData['title'] = $title;
 
             return $this->view->render($response, 'pages/home.twig', $viewData);
         }
@@ -19,88 +21,62 @@ $app
     ->setName('home')
 ;
 
-// Promotions
+// Pages
 $app
     ->get(
-        '/director-of-filming',
-        function($request, $response)
-        {
-            // Fetch promotions
-            $query = $this->db->query('SELECT * FROM categorie');
-            $categories = $query->fetchAll();
-
-            // View data
-            $viewData = [];
-            $viewData['categories'] = $categories;
-
-            return $this->view->render($response, 'pages/director.twig', $viewData);
-        }
-    )
-    ->setName('director')
-;
-
-// Promotion
-$app
-    ->get(
-        '/cinematographer',
+        '/as-{categorie}',
         function($request, $response, $arguments)
         {
             // Fetch promotions
-            $query = $this->db->query('SELECT * FROM categorie');
-            $categories = $query->fetchAll();
+            $prepare = $this->db->prepare('SELECT * FROM categorie WHERE categorie_link = ?');
+            $prepare->execute(array($arguments['categorie']));
+            $categorie = $prepare->fetchAll();
+
+            $prepare = $this->db->prepare('SELECT * FROM video WHERE video_categorie = ?');
+            $prepare->execute(array($arguments['categorie']));
+            $video = $prepare->fetchAll();
+
+            $prepare = $this->db->prepare('SELECT * FROM categorie WHERE categorie_link != ?');
+            $prepare->execute(array($arguments['categorie']));
+            $others = $prepare->fetchAll();
+
+            foreach ($categorie as $_categorie) {
+                $title = $_categorie->categorie_name;
+            }
 
             // View data
             $viewData = [];
-            $viewData['categories'] = $categories;
+            $viewData['categorie'] = $categorie;
+            $viewData['others'] = $others;
+            $viewData['videos'] = $video;
+            $viewData['title'] = $title;
 
-            return $this->view->render($response, 'pages/cinematographer.twig', $viewData);
+            if (empty($categorie)) {
+                header('Location: http://localhost:8888/Slim-Template/web');
+                die;
+            }
+            else {
+                return $this->view->render($response, 'pages/article.twig', $viewData);
+            }
         }
     )
-    ->setName('cinematographer')
+    ->setName('article')
 ;
 
-// $app
-//     ->get(
-//         'Post/director-of-filming',
-//         function($request, $response)
-//         {
-//             // Fetch promotions
-//             $query = $this->db->query('SELECT * FROM categorie');
-//             $categories = $query->fetchAll();
-
-//             // View data
-//             $viewData = [];
-//             $viewData['categories'] = $categories;
-
-//             return $this->view->render($response, 'pages/director.twig', $viewData);
-//         }
-//     )
-//     ->setName('director')
-// ;
-
-// Random student
+// Contact
 $app
     ->get(
-        '/students/random',
+        '/contact',
         function($request, $response)
         {
-            return 'random student';
-        }
-    )
-    ->setName('random_student')
-;
+            $title = 'Contact';
 
-// Student
-$app
-    ->get(
-        '/students/{slug:[a-z_-]+}',
-        function($request, $response, $arguments)
-        {
             // View data
             $viewData = [];
+            $viewData['title'] = $title;
 
-            return $this->view->render($response, 'pages/student.twig', $viewData);
+            return $this->view->render($response, 'pages/contact.twig', $viewData);
         }
     )
-    ->setName('student')
+    ->setName('contact')
 ;

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.href.indexOf("as-") != -1) {
     // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
     const player = Plyr.setup('video')
     // const players = Array.from(document.querySelectorAll('.js-player')).map(p => new Plyr(p));
@@ -35,4 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
     on('.js-forward', 'click', () => { 
       player.forward();
     });
+  }
 });
