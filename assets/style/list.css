@@ -1,0 +1,42 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul li {
+    float: left;
+    font-size: 1em;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover:not(.active) {
+    background-color: #111;
+    text-decoration: none;
+    color: white;
+}
+
+ul li a.active {
+    background-color: #4CAF50;
+}
+
+ul li.right {
+    float: right;
+}
+
+@media screen and (max-width: 600px) {
+
+    ul li.right,
+    ul li {
+        float: none;
+    }
+}

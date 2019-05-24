@@ -15,6 +15,8 @@ $container['view'] = function($container)
     return $view;
 };
 
+define('SALT', 'jhrs*$d€qsgbhqyecsyeo€');
+
 // Database
 $container['db'] = function($container)
 {

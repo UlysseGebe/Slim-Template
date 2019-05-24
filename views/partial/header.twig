@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inscription</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <?= !empty($style) ? $style : '' ?>
-    <link rel="stylesheet" href="assets/list.css">
+    <link rel="stylesheet" href="../assets/style/{{ style }}.css">
+    <link rel="stylesheet" href="../assets/style/list.css">
 </head>
 <body>
     <ul>
-        <li><a href="Register">Inscription</a></li>
-        <li><a href="Login">Login</a></li>
-        <li><a href="My-Space">Private</a></li>
-        <li class="right"><a href="Logout">Logout</a></li>
+        <li><a href="{{ path_for('register') }}">Inscription</a></li>
+        <li><a href="{{ path_for('login') }}">Login</a></li>
+        <li><a href="{{ path_for('adminpage') }}">Private</a></li>
+        <li class="right"><a href="{{ path_for('logout') }}">Logout</a></li>
     </ul>
