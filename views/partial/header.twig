@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inscription</title>
+    <link rel="icon" type="image/png" href="../assets/image/icon.png" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    {% if boot != null %}
+        <link rel="stylesheet" href="{{ boot }}">
+    {% else %}
     <link rel="stylesheet" href="../assets/style/{{ style }}.css">
+    {% endif %}
     <link rel="stylesheet" href="../assets/style/list.css">
 </head>
 <body>
@@ -14,5 +19,7 @@
         <li><a href="{{ path_for('register') }}">Inscription</a></li>
         <li><a href="{{ path_for('login') }}">Login</a></li>
         <li><a href="{{ path_for('adminpage') }}">Private</a></li>
+        <li><a href="{{ path_for('categorie') }}">Catégorie</a></li>
+        <li><a href="{{ path_for('video') }}">Vidéo</a></li>
         <li class="right"><a href="{{ path_for('logout') }}">Logout</a></li>
     </ul>

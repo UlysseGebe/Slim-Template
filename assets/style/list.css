@@ -40,3 +40,47 @@ ul li.right {
         float: none;
     }
 }
+
+textarea {
+    min-height: 5em;
+    max-height: 15em;
+    overflow-y: scroll;
+}
+
+.boot {
+    width: 100%;
+    min-height: 6.25em;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boot div{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boot h1 {
+    cursor: pointer;
+}
+
+.custom {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    margin-top: 20px; 
+}
+
+.boot div div {
+    overflow: scroll;
+    max-height: 25em;
+    margin-bottom: 80px;
+    box-shadow: 1.5px 1.5px 12px 2px rgba(10, 0, 0, 0.473);
+}

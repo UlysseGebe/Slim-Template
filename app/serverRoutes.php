@@ -118,10 +118,21 @@ $app
                 header('location: '.ADURL.'');
                 exit;
             }
+
+            $query = $this->db->query('SELECT * FROM categorie');
+            $categories = $query->fetchAll();
+            
+            $query = $this->db->query('SELECT * FROM video');
+            $videos = $query->fetchAll();
+
             $style = 'bootstrap';
+            $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
             // View data
             $viewData = [];
             $viewData['style'] = $style;
+            $viewData['boot'] = $boot;
+            $viewData['categories'] = $categories;
+            $viewData['videos'] = $videos;
 
             return $this->view->render($response, 'resources/adminpage.twig', $viewData);
         }
@@ -138,10 +149,11 @@ $app
                 exit;
             }
             $style = 'bootstrap';
-
+            $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
             // View data
             $viewData = [];
             $viewData['style'] = $style;
+            $viewData['boot'] = $boot;
 
             if ($request->getMethod() == 'POST') {
                 if(isset($_POST['name'], $_POST['link'], $_POST['legend'], $_FILES["imageToUpload"], $_POST['description'])) {
@@ -193,10 +205,11 @@ $app
                 exit;
             }
             $style = 'bootstrap';
-
+            $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
             // View data
             $viewData = [];
             $viewData['style'] = $style;
+            $viewData['boot'] = $boot;
 
             $prepare = $this->db->prepare('SELECT * FROM categorie WHERE categorie_name != ?');
             $prepare->execute(array('Home'));

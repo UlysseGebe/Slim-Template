@@ -3,69 +3,61 @@
 <div class="boot">
     <div>
         <h1><a href="{{ path_for('categorie') }}">Catégorie</a></h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Legende</th>
+                        <th scope="col">Contenue</th>
+                        <th scope="col">Lien</th>
+                        <th scope="col">Cover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for _categorie in categories %}
+                        <tr>
+                            <th scope="row">scope</th>
+                            <td>{{ _categorie.categorie_name }}k</td>
+                            <td>{{ _categorie.categorie_legend }}</td>
+                            <td>{{ _categorie.categorie_content }}</td>
+                            <td>{{ _categorie.categorie_link }}</td>
+                            <td>{{ _categorie.categorie_image }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <div>
         <h1><a href="{{ path_for('video') }}">Vidéo</a></h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Categorie</th>
+                        <th scope="col">Liens</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Fallback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for _video in videos %}
+                        <tr>
+                            <th scope="row">scope</th>
+                            <td>{{ _video.video_name }}k</td>
+                            <td>{{ _video.video_categorie }}</td>
+                            <td>{{ _video.video_url }}<br>{{ _video.video_poster }}</td>
+                            <td>{{ _video.video_description }}</td>
+                            <td>{{ _video.video_fallback }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
