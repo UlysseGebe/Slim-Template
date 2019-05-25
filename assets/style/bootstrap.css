@@ -8297,16 +8297,16 @@ textarea {
 
 .boot {
     width: 75%;
-    height: 6.25em;
+    min-height: 6.25em;
     position: relative;
-    top: calc(50vh - 6.25em);
     margin: 0 auto;
+    margin-top: 2em;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-.boot * {
+.boot h1 {
     cursor: pointer;
 }
