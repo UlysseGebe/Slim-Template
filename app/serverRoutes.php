@@ -30,7 +30,8 @@ $app
                     $user = $prepare->fetch();
                 
                     if(!$user) {
-                        $message = 'User doesn\'t exist';
+                        $message = 'Something is rong';
+                        $viewData['message'] = $message;
                         return $this->view->render($response, 'resources/login.twig', $viewData);
                     }
                     else {
@@ -41,7 +42,8 @@ $app
                             exit;
                         }
                         else {
-                            $message = 'Wrong password';
+                            $message = 'Something is rong';
+                            $viewData['message'] = $message;
                             return $this->view->render($response, 'resources/login.twig', $viewData);
                         }
                     }
@@ -125,6 +127,120 @@ $app
         }
     )
     ->setName('adminpage')
+;
+
+$app
+    ->map(['GET', 'POST'],
+        '/Categorie', 
+        function ($request, $response, $args) {
+            if (empty($_SESSION['user'])) {
+                header('location: '.ADURL.'');
+                exit;
+            }
+            $style = 'bootstrap';
+
+            // View data
+            $viewData = [];
+            $viewData['style'] = $style;
+
+            if ($request->getMethod() == 'POST') {
+                if(isset($_POST['name'], $_POST['link'], $_POST['legend'], $_FILES["imageToUpload"], $_POST['description'])) {
+                    if(!empty($_POST['name']) AND !empty($_POST['link']) AND !empty($_POST['legend']) AND !empty($_FILES["imageToUpload"]) AND !empty($_POST['description'])) {
+                        include('imageLoader.php');
+                        if ($uploadOk == 0) {
+                            $message = 'Sorry, your file was not uploaded.';
+                            $viewData['message'] = $message;
+                            $viewData['color'] = 'red';
+                        } else {
+                            if (move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], $target_file)) {
+                                $data = [
+                                    'name' => trim($_POST['name']),
+                                    'legend' => trim($_POST['legend']),
+                                    'content' => trim($_POST['description']),
+                                    'link' => trim($_POST['link']),
+                                    'image' => trim($_FILES["imageToUpload"]["name"]),
+                                ];
+            
+                                $prepare = $this->db->prepare('INSERT INTO categorie (categorie_name, categorie_legend, categorie_content, categorie_link, categorie_image) VALUES (:name, :legend, :content, :link, :image)');
+                                $prepare->execute($data);
+                                $message = 'Une catégorie a été ajoutée';
+                                $viewData['message'] = $message;
+                                $viewData['color'] = 'green';
+                            } else {
+                                $message = 'Sorry, there was an error uploading your file.';
+                                $viewData['message'] = $message;
+                                $viewData['color'] = 'red';
+                            }
+                        }
+                }
+                else {
+                       $message = 'Veuillez remplir tous les champs';
+                       $viewData['message'] = $message;
+                       $viewData['color'] = 'red';
+                    }
+                }
+            }
+            else {
+                return $this->view->render($response, 'resources/categorie.twig', $viewData);
+            }
+        return $this->view->render($response, 'resources/categorie.twig', $viewData);
+        }
+    )
+    ->setName('categorie')
+;
+
+$app
+    ->map(['GET', 'POST'],
+        '/Video', 
+        function ($request, $response, $args) {
+            if (empty($_SESSION['user'])) {
+                header('location: '.ADURL.'');
+                exit;
+            }
+            $style = 'bootstrap';
+
+            // View data
+            $viewData = [];
+            $viewData['style'] = $style;
+
+            $prepare = $this->db->prepare('SELECT * FROM categorie WHERE categorie_name != ?');
+            $prepare->execute(array('Home'));
+            $categories = $prepare->fetchAll();
+            $viewData['categories'] = $categories;
+
+            if ($request->getMethod() == 'POST') {
+                if(isset($_POST['name'], $_POST['categorie'], $_POST['videoToUpload'], $_POST['description'], $_POST['imageToUpload'], $_POST['fallback'])) {
+                    if(!empty($_POST['name']) AND !empty($_POST['categorie']) AND !empty($_POST['videoToUpload']) AND !empty($_POST['description']) AND !empty($_POST['imageToUpload']) AND !empty($_POST['fallback'])) {
+                    $data = [
+                        'name' => trim($_POST['name']),
+                        'categorie' => trim($_POST['categorie']),
+                        'url' => trim($_POST['videoToUpload']),
+                        'description' => trim($_POST['description']),
+                        'poster' => trim($_POST['imageToUpload']),
+                        'fallback' => trim($_POST['fallback']),
+                    ];
+                
+                    $prepare = $this->db->prepare('INSERT INTO video (video_name, video_categorie, video_url, video_description, video_poster, video_fallback) VALUES (:name, :categorie, :url, :description, :poster, :fallback)');
+                    $prepare->execute($data);
+                    
+                    $message = 'Une Video a été ajoutée';
+                    $viewData['message'] = $message;
+                    $viewData['color'] = 'green';
+                }
+                else {
+                       $message = 'Veuillez remplir tous les champs';
+                       $viewData['message'] = $message;
+                       $viewData['color'] = 'red';
+                    }
+                }
+            }
+            else {
+                return $this->view->render($response, 'resources/video.twig', $viewData);
+            }
+            return $this->view->render($response, 'resources/video.twig', $viewData);
+        }
+    )
+    ->setName('video')
 ;
 
 $app

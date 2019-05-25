@@ -1,0 +1,156 @@
+.presentation {
+    background-color: rgba(140, 80, 58, 0.36);
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.presentation h1 {
+    color: #191919;
+    font-size: 4em;
+    margin: 0 0 15px 0;
+}
+
+.presentation h2 {
+    max-width: 800px;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+.presentation .button {
+    margin-top: 1em;
+    border: 1px solid rgba(25, 25, 25, 0.6);
+    border-radius: 5px;
+    color: #191919;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    display: flex;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.presentation .button:hover {
+    border: 1px solid rgba(25, 25, 25, 0.6);
+    background-color: black;
+    color: #ffffff;
+}
+
+.presentation .social {
+    margin-top: 40px;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.presentation .social a img{
+    width: 50px;
+}
+
+.presentation .arrows {
+    width: 60px;
+    height: 72px;
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    bottom: 1em;
+}
+
+.presentation .arrows path {
+    stroke: rgb(19, 19, 19);
+    fill: transparent;
+    stroke-width: 1px;	
+}
+
+article {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+article:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+article .cover {
+    width: calc(100% - 450px);
+    height: 450px;
+    background: #9c9c9c;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article .cover img {
+    transition: opacity 0.2s ease;
+    width: 100%;
+}
+
+article .title {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #f2f2f2;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+article .title span {
+    color: #999999;
+}
+
+article:hover .cover img {
+    opacity: .5; 
+}
+
+article:hover .title {
+    background-color: black; 
+    color: white;
+}
+
+@media only screen and (min-width: 690px) and (max-width: 990px) {
+    article .cover {
+        width: 450px;
+    }
+    article .title {
+        width: calc(100% - 450px);
+    }
+}
+
+@media only screen and (max-width: 690px) {
+    article,
+    article:nth-child(2n) {
+        flex-direction: column;
+        height: auto;
+    }
+    article .cover {
+        width: 100%;
+        height: 690px;
+    }
+    article .title {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+
+@media only screen and (max-width: 425px) and (max-height: 660px) {
+    .presentation .arrows path.a1 {stroke: none}
+}

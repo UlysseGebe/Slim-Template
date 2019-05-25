@@ -1,568 +1,28 @@
-* {
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-h1 {
-    font-weight: 700;
-}
-
-h2 {
-    font-weight: 300;
-}
-
-h3 {
-    margin: 10px 0;
-}
-
-p {
-    margin-bottom: 0;
-}
-
-h1,
-h2,
-p {
-    width: 90%;
-    text-align: center;
-}
-
-body {
-    margin: 0;
-}
-
-body.is-active {
-    overflow: hidden;
-}
-
-header {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    z-index: 9;
-    transition: background 0.3s ease, border 0.3s ease, height 1s ease;
-    overflow: hidden;
-}
-
-header a {
-    color: #191919;
-    text-decoration: none;
-}
-
-header nav {
-    width: 30%;
-}
-
-header nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-header nav ul li {
-    padding-left: 20px;
-}
-
-header nav ul li a {
-    font-size: 1.1em;
-    font-weight: 300;
-    color: #999999;
-    transition: color 0.2s ease;
-}
-
-header nav ul li a:hover {
-    color: black;
-}
-
-header nav ul li a.active {
-    color: black;
-    font-weight: 400;
-}
-
-header h1 {
-    font-size: 2em;
-    transition: opacity 0.3s ease;
-    display: none;
-    opacity: 0;
-}
-
-header .social {
-    width: 30%;
-    text-align: end;
-}
-
-header .social a {
-    padding-right: 20px;
-}
-
-header .social a img {
-    width: 30px;
-}
-
-header .burgermenu {
-    position: absolute;
-    top: 38px;
-    right: 30px;
-    width: 24px;
-    height: 24px;
-    display: none;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-}
-
-header .burgermenu .lines {
-    background-color: black;
-    width: 24px;
-    height: 2px;
-    position: absolute;
-    transition-delay: 0.3s;
-    transition: transform 0.5s ease;
-}
-
-header .burgermenu .lines::before {
-    content: "";
-    background-color: black;
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    top: 6px;
-    cursor: pointer;
-    transform-origin: left;
-    transition: transform 0.2s ease;
-}
-
-header .burgermenu .lines::after {
-    content: "";
-    background-color: black;
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    bottom: 6px;
-    transition-delay: 0.3s;
-    transition: transform 0.5s ease;
-}
-
-@media only screen and (max-width: 990px) {
-    header {
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    header .burgermenu {
-        display: flex;
-    }
-
-    header .social {
-        display: none;
-        text-align: center;
-        margin-bottom: 50px;
-    }
-
-    header .social a:last-child {
-        padding: 0;
-    }
-
-    header .social a img {
-        width: 40px;
-    }
-
-    header nav {
-        display: none;
-        text-align: center;
-        height: calc(100vh - 90px);
-    }
-
-    header nav ul {
-        flex-direction: column;
-        margin: 0;
-        height: 100%;
-        justify-content: center;
-    }
-
-    header nav ul li {
-        padding: 0;
-        font-size: 3em;
-    }
-
-    header nav ul li:first-child {
-        margin-bottom: 10%;
-    }
-}
-
-header.is-active {
-    background-color: #ffffff !important;
-    border-bottom: 5px solid #f2f2f2 !important;
-    height: 100vh;
-}
-
-header h1.is-active {
-    display: none !important;
-}
-
-header .social.is-active {
-    display: block;
-}
-
-header nav.is-active {
-    display: block;
-}
-
-header .burgermenu .lines.is-active {
-    transform: rotate(45deg);
-    transform-origin: center;
-}
-
-header .burgermenu .lines.is-active::before {
-    transform: scaleX(0);
-}
-
-header .burgermenu .lines.is-active::after {
-    bottom: 0;
-    transform: rotate(90deg);
-}
-
-.presentation {
-    background-color: rgba(140, 80, 58, 0.36);
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-}
-
-.presentation h1 {
-    color: #191919;
-    font-size: 4em;
-    margin: 0 0 15px 0;
-}
-
-.presentation h2 {
-    max-width: 800px;
-    font-size: 1.5em;
-    text-align: center;
-    line-height: 1.5em;
-}
-
-.presentation .button {
-    margin-top: 1em;
-    border: 1px solid rgba(25, 25, 25, 0.6);
-    border-radius: 5px;
-    color: #191919;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 30px;
-    text-transform: uppercase;
-    display: flex;
-    font-size: 1em;
-    justify-content: center;
-    align-items: center;
-}
-
-.presentation .button:hover {
-    border: 1px solid rgba(25, 25, 25, 0.6);
-    background-color: black;
-    color: #ffffff;
-}
-
-.presentation .social {
-    margin-top: 40px;
-    width: 120px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.presentation .social a img {
-    width: 50px;
-}
-
-.presentation .arrows {
-    width: 60px;
-    height: 72px;
-    position: absolute;
-    left: 50%;
-    margin-left: -30px;
-    bottom: 1em;
-}
-
-.presentation .arrows path {
-    stroke: #131313;
-    fill: transparent;
-    stroke-width: 1px;
-}
-
-article {
-    width: 100%;
-    height: 450px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-article:nth-child(2n) {
-    flex-direction: row-reverse;
-}
-
-article .cover {
-    width: calc(100% - 450px);
-    height: 450px;
-    background: #9c9c9c;
-    overflow: hidden;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-article .cover img {
-    transition: opacity 0.2s ease;
-    width: 100%;
-}
-
-article .title {
-    width: 450px;
-    height: 450px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: #f2f2f2;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-article .title span {
-    color: #999999;
-}
-
-article:hover .cover img {
-    opacity: .5;
-}
-
-article:hover .title {
-    background-color: black;
-    color: white;
-}
-
-@media only screen and (min-width: 690px) and (max-width: 990px) {
-    article .cover {
-        width: 450px;
-    }
-
-    article .title {
-        width: calc(100% - 450px);
-    }
-}
-
-@media only screen and (max-width: 690px) {
-
-    article,
-    article:nth-child(2n) {
-        flex-direction: column;
-        height: auto;
-    }
-
-    article .cover {
-        width: 100%;
-        height: 690px;
-    }
-
-    article .title {
-        width: 100%;
-        height: 300px;
-    }
-}
-
-@media only screen and (max-width: 425px) and (max-height: 660px) {
-    .presentation .arrows path.a1 {
-        stroke: none;
-    }
-}
-
-.contact {
-    width: 100%;
-    height: auto;
-    margin-top: 100px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.contact form {
-    width: 40%;
-}
-
-.contact form div {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact form label {
-    color: #333333;
-    font-weight: 700;
-    font-size: 1em;
-    font-style: normal;
-    line-height: 15px;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    text-align: left;
-    text-transform: none;
-}
-
-.contact form input[type=text],
-.contact form input[type=email],
-.contact form textarea {
-    border-style: solid;
-    border-width: 1px;
-    outline: none;
-    background-color: #ffffff;
-    border-color: #dddddd;
-    color: #333333;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: normal;
-    margin-bottom: 30px;
-    margin-top: 0px;
-    padding-left: 10px;
-    text-align: left;
-    text-transform: none;
-    border-radius: 3px;
-}
-
-.contact form textarea {
-    resize: vertical;
-}
-
-.contact form input[type=submit] {
-    border-radius: 5px;
-    color: #ffffff;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: bold;
-    height: 40px;
-    line-height: 40px;
-    padding-left: 25px;
-    padding-right: 25px;
-    text-transform: none;
-    background-color: #333333;
-    border: 0;
-}
-
-.article .presentation h2 {
-    font-weight: 400;
-    margin: -10px 0 10px 0;
-}
-
-.article .presentation p {
-    font-weight: 300;
-    font-size: 1em;
-}
-
-.article .work {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.article .work legend {
-    color: darkgray;
-    padding-top: 10px;
-    width: 90%;
-    text-align: center;
-}
-
-.article .also {
-    width: 80%;
-    margin: 100px auto 0 auto;
-}
-
-.article .also .content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.article .also .content article {
-    flex-direction: column;
-    width: 350px;
-    margin: 0 20px 20px 0;
-}
-
-.article .also .content article .cover {
-    width: 100%;
-}
-
-.article .also .content article .cover img {
-    width: auto;
-    height: 100%;
-}
-
-.article .also .content article .title {
-    width: 100%;
-    height: 50%;
-}
-
-@media only screen and (max-width: 990px) {
-    .article .also {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .article .also .content {
-        justify-content: center;
-    }
-
-    .article .also .content article {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .article .also .content article .title {
-        height: 25%;
-    }
-}
-
 @keyframes plyr-progress {
     to {
-        background-position: 25px 0;
+        background-position: 25px 0
     }
 }
 
 @keyframes plyr-popup {
     0% {
         opacity: .5;
-        transform: translateY(10px);
+        transform: translateY(10px)
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0)
     }
 }
 
 @keyframes plyr-fade-in {
     from {
-        opacity: 0;
+        opacity: 0
     }
 
     to {
-        opacity: 1;
+        opacity: 1
     }
 }
 
@@ -588,34 +48,34 @@ article:hover .title {
     border-radius: inherit;
     height: auto;
     vertical-align: middle;
-    width: 100%;
+    width: 100%
 }
 
 .plyr button {
     font: inherit;
     line-height: inherit;
-    width: auto;
+    width: auto
 }
 
 .plyr:focus {
-    outline: 0;
+    outline: 0
 }
 
 .plyr--full-ui {
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 .plyr--full-ui *,
 .plyr--full-ui ::after,
 .plyr--full-ui ::before {
-    box-sizing: inherit;
+    box-sizing: inherit
 }
 
 .plyr--full-ui a,
 .plyr--full-ui button,
 .plyr--full-ui input,
 .plyr--full-ui label {
-    touch-action: manipulation;
+    touch-action: manipulation
 }
 
 .plyr__badge {
@@ -624,11 +84,11 @@ article:hover .title {
     color: #fff;
     font-size: 9px;
     line-height: 1;
-    padding: 3px 4px;
+    padding: 3px 4px
 }
 
 .plyr--full-ui ::-webkit-media-text-track-container {
-    display: none;
+    display: none
 }
 
 .plyr__captions {
@@ -642,46 +102,46 @@ article:hover .title {
     position: absolute;
     text-align: center;
     transition: transform .4s ease-in-out;
-    width: 100%;
+    width: 100%
 }
 
 .plyr__captions .plyr__caption {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, .8);
     border-radius: 2px;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
     line-height: 185%;
     padding: .2em .5em;
-    white-space: pre-wrap;
+    white-space: pre-wrap
 }
 
 .plyr__captions .plyr__caption div {
-    display: inline;
+    display: inline
 }
 
 .plyr__captions span:empty {
-    display: none;
+    display: none
 }
 
-@media (min-width: 480px) {
+@media (min-width:480px) {
     .plyr__captions {
         font-size: 16px;
-        padding: 20px;
+        padding: 20px
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
     .plyr__captions {
-        font-size: 18px;
+        font-size: 18px
     }
 }
 
 .plyr--captions-active .plyr__captions {
-    display: block;
+    display: block
 }
 
 .plyr:not(.plyr--hide-controls) .plyr__controls:not(:empty)~.plyr__captions {
-    transform: translateY(-40px);
+    transform: translateY(-40px)
 }
 
 .plyr__control {
@@ -694,7 +154,7 @@ article:hover .title {
     overflow: visible;
     padding: 7px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all .3s ease
 }
 
 .plyr__control svg {
@@ -702,57 +162,57 @@ article:hover .title {
     fill: currentColor;
     height: 18px;
     pointer-events: none;
-    width: 18px;
+    width: 18px
 }
 
 .plyr__control:focus {
-    outline: 0;
+    outline: 0
 }
 
 .plyr__control.plyr__tab-focus {
-    box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-    outline: 0;
+    box-shadow: 0 0 0 5px rgba(26, 175, 255, .5);
+    outline: 0
 }
 
 a.plyr__control {
-    text-decoration: none;
+    text-decoration: none
 }
 
 a.plyr__control::after,
 a.plyr__control::before {
-    display: none;
+    display: none
 }
 
 .plyr__control.plyr__control--pressed .icon--not-pressed,
 .plyr__control.plyr__control--pressed .label--not-pressed,
 .plyr__control:not(.plyr__control--pressed) .icon--pressed,
 .plyr__control:not(.plyr__control--pressed) .label--pressed {
-    display: none;
+    display: none
 }
 
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #1aafff;
-    color: #fff;
+    color: #fff
 }
 
 .plyr--video .plyr__control svg {
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .15))
 }
 
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #1aafff;
-    color: #fff;
+    color: #fff
 }
 
 .plyr__control--overlaid {
-    background: rgba(26, 175, 255, 0.8);
+    background: rgba(26, 175, 255, .8);
     border: 0;
     border-radius: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
     color: #fff;
     display: none;
     left: 50%;
@@ -760,37 +220,37 @@ a.plyr__control::before {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: 2
 }
 
 .plyr__control--overlaid svg {
     left: 2px;
-    position: relative;
+    position: relative
 }
 
 .plyr__control--overlaid:focus,
 .plyr__control--overlaid:hover {
-    background: #1aafff;
+    background: #1aafff
 }
 
 .plyr--playing .plyr__control--overlaid {
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden
 }
 
 .plyr--full-ui.plyr--video .plyr__control--overlaid {
-    display: block;
+    display: block
 }
 
 .plyr--full-ui ::-webkit-media-controls {
-    display: none;
+    display: none
 }
 
 .plyr__controls {
     align-items: center;
     display: flex;
     justify-content: flex-end;
-    text-align: center;
+    text-align: center
 }
 
 .plyr__controls .plyr__menu,
@@ -798,34 +258,34 @@ a.plyr__control::before {
 .plyr__controls .plyr__time,
 .plyr__controls .plyr__volume,
 .plyr__controls>.plyr__control {
-    margin-left: 5px;
+    margin-left: 5px
 }
 
 .plyr__controls .plyr__menu+.plyr__control,
 .plyr__controls .plyr__progress+.plyr__control,
 .plyr__controls>.plyr__control+.plyr__control,
 .plyr__controls>.plyr__control+.plyr__menu {
-    margin-left: 2px;
+    margin-left: 2px
 }
 
 .plyr__controls>.plyr__control:first-child,
 .plyr__controls>.plyr__control:first-child+[data-plyr=pause] {
     margin-left: 0;
-    margin-right: auto;
+    margin-right: auto
 }
 
 .plyr__controls:empty {
-    display: none;
+    display: none
 }
 
-@media (min-width: 480px) {
+@media (min-width:480px) {
 
     .plyr__controls .plyr__menu,
     .plyr__controls .plyr__progress,
     .plyr__controls .plyr__time,
     .plyr__controls .plyr__volume,
     .plyr__controls>.plyr__control {
-        margin-left: 10px;
+        margin-left: 10px
     }
 }
 
@@ -833,11 +293,11 @@ a.plyr__control::before {
     background: #fff;
     border-radius: inherit;
     color: #4f5b5f;
-    padding: 10px;
+    padding: 10px
 }
 
 .plyr--video .plyr__controls {
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .7));
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
     bottom: 0;
@@ -847,39 +307,39 @@ a.plyr__control::before {
     position: absolute;
     right: 0;
     transition: opacity .4s ease-in-out, transform .4s ease-in-out;
-    z-index: 3;
+    z-index: 3
 }
 
-@media (min-width: 480px) {
+@media (min-width:480px) {
     .plyr--video .plyr__controls {
-        padding: 35px 10px 10px;
+        padding: 35px 10px 10px
     }
 }
 
 .plyr--video.plyr--hide-controls .plyr__controls {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(100%);
+    transform: translateY(100%)
 }
 
 .plyr [data-plyr=airplay],
 .plyr [data-plyr=captions],
 .plyr [data-plyr=fullscreen],
 .plyr [data-plyr=pip] {
-    display: none;
+    display: none
 }
 
 .plyr--airplay-supported [data-plyr=airplay],
 .plyr--captions-enabled [data-plyr=captions],
 .plyr--fullscreen-enabled [data-plyr=fullscreen],
 .plyr--pip-supported [data-plyr=pip] {
-    display: inline-block;
+    display: inline-block
 }
 
 .plyr__video-embed {
     height: 0;
     padding-bottom: 56.25%;
-    position: relative;
+    position: relative
 }
 
 .plyr__video-embed iframe {
@@ -892,38 +352,38 @@ a.plyr__control::before {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 100%;
+    width: 100%
 }
 
 .plyr--full-ui .plyr__video-embed>.plyr__video-embed__container {
     padding-bottom: 240%;
     position: relative;
-    transform: translateY(-38.28125%);
+    transform: translateY(-38.28125%)
 }
 
 .plyr__menu {
     display: flex;
-    position: relative;
+    position: relative
 }
 
 .plyr__menu .plyr__control svg {
-    transition: transform 0.3s ease;
+    transition: transform .3s ease
 }
 
 .plyr__menu .plyr__control[aria-expanded=true] svg {
-    transform: rotate(90deg);
+    transform: rotate(90deg)
 }
 
 .plyr__menu .plyr__control[aria-expanded=true] .plyr__tooltip {
-    display: none;
+    display: none
 }
 
 .plyr__menu__container {
     animation: plyr-popup .2s ease;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, .9);
     border-radius: 4px;
     bottom: 100%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
     color: #4f5b5f;
     font-size: 16px;
     margin-bottom: 10px;
@@ -931,37 +391,37 @@ a.plyr__control::before {
     right: -3px;
     text-align: left;
     white-space: nowrap;
-    z-index: 3;
+    z-index: 3
 }
 
 .plyr__menu__container>div {
     overflow: hidden;
-    transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: height .35s cubic-bezier(.4, 0, .2, 1), width .35s cubic-bezier(.4, 0, .2, 1)
 }
 
 .plyr__menu__container::after {
     border: 4px solid transparent;
-    border-top-color: rgba(255, 255, 255, 0.9);
+    border-top-color: rgba(255, 255, 255, .9);
     content: '';
     height: 0;
     position: absolute;
     right: 15px;
     top: 100%;
-    width: 0;
+    width: 0
 }
 
 .plyr__menu__container [role=menu] {
-    padding: 7px;
+    padding: 7px
 }
 
 .plyr__menu__container [role=menuitem],
 .plyr__menu__container [role=menuitemradio] {
-    margin-top: 2px;
+    margin-top: 2px
 }
 
 .plyr__menu__container [role=menuitem]:first-child,
 .plyr__menu__container [role=menuitemradio]:first-child {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .plyr__menu__container .plyr__control {
@@ -974,13 +434,13 @@ a.plyr__control::before {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    width: 100%;
+    width: 100%
 }
 
 .plyr__menu__container .plyr__control>span {
     align-items: inherit;
     display: flex;
-    width: 100%;
+    width: 100%
 }
 
 .plyr__menu__container .plyr__control::after {
@@ -988,21 +448,21 @@ a.plyr__control::before {
     content: '';
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr__menu__container .plyr__control--forward {
-    padding-right: 28px;
+    padding-right: 28px
 }
 
 .plyr__menu__container .plyr__control--forward::after {
-    border-left-color: rgba(79, 91, 95, 0.8);
-    right: 5px;
+    border-left-color: rgba(79, 91, 95, .8);
+    right: 5px
 }
 
 .plyr__menu__container .plyr__control--forward.plyr__tab-focus::after,
 .plyr__menu__container .plyr__control--forward:hover::after {
-    border-left-color: currentColor;
+    border-left-color: currentColor
 }
 
 .plyr__menu__container .plyr__control--back {
@@ -1011,12 +471,12 @@ a.plyr__control::before {
     margin-bottom: 3px;
     padding-left: 28px;
     position: relative;
-    width: calc(100% - 14px);
+    width: calc(100% - 14px)
 }
 
 .plyr__menu__container .plyr__control--back::after {
-    border-right-color: rgba(79, 91, 95, 0.8);
-    left: 7px;
+    border-right-color: rgba(79, 91, 95, .8);
+    left: 7px
 }
 
 .plyr__menu__container .plyr__control--back::before {
@@ -1029,32 +489,32 @@ a.plyr__control::before {
     overflow: hidden;
     position: absolute;
     right: 0;
-    top: 100%;
+    top: 100%
 }
 
 .plyr__menu__container .plyr__control--back.plyr__tab-focus::after,
 .plyr__menu__container .plyr__control--back:hover::after {
-    border-right-color: currentColor;
+    border-right-color: currentColor
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio] {
-    padding-left: 7px;
+    padding-left: 7px
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio]::after,
 .plyr__menu__container .plyr__control[role=menuitemradio]::before {
-    border-radius: 100%;
+    border-radius: 100%
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio]::before {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, .1);
     content: '';
     display: block;
     flex-shrink: 0;
     height: 16px;
     margin-right: 10px;
     transition: all .3s ease;
-    width: 16px;
+    width: 16px
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio]::after {
@@ -1066,21 +526,21 @@ a.plyr__control::before {
     top: 50%;
     transform: translateY(-50%) scale(0);
     transition: transform .3s ease, opacity .3s ease;
-    width: 6px;
+    width: 6px
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
-    background: #1aafff;
+    background: #1aafff
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::after {
     opacity: 1;
-    transform: translateY(-50%) scale(1);
+    transform: translateY(-50%) scale(1)
 }
 
 .plyr__menu__container .plyr__control[role=menuitemradio].plyr__tab-focus::before,
 .plyr__menu__container .plyr__control[role=menuitemradio]:hover::before {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, .1)
 }
 
 .plyr__menu__container .plyr__menu__value {
@@ -1090,7 +550,7 @@ a.plyr__control::before {
     margin-right: -5px;
     overflow: hidden;
     padding-left: 25px;
-    pointer-events: none;
+    pointer-events: none
 }
 
 .plyr--full-ui input[type=range] {
@@ -1104,7 +564,7 @@ a.plyr__control::before {
     margin: 0;
     padding: 0;
     transition: box-shadow .3s ease;
-    width: 100%;
+    width: 100%
 }
 
 .plyr--full-ui input[type=range]::-webkit-slider-runnable-track {
@@ -1115,20 +575,20 @@ a.plyr__control::before {
     transition: box-shadow .3s ease;
     -webkit-user-select: none;
     user-select: none;
-    background-image: linear-gradient(to right, currentColor var(--value, 0), transparent var(--value, 0));
+    background-image: linear-gradient(to right, currentColor var(--value, 0), transparent var(--value, 0))
 }
 
 .plyr--full-ui input[type=range]::-webkit-slider-thumb {
     background: #fff;
     border: 0;
     border-radius: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2);
     height: 14px;
     position: relative;
     transition: all .2s ease;
     width: 14px;
     -webkit-appearance: none;
-    margin-top: -4px;
+    margin-top: -4px
 }
 
 .plyr--full-ui input[type=range]::-moz-range-track {
@@ -1138,24 +598,24 @@ a.plyr__control::before {
     height: 6px;
     transition: box-shadow .3s ease;
     -moz-user-select: none;
-    user-select: none;
+    user-select: none
 }
 
 .plyr--full-ui input[type=range]::-moz-range-thumb {
     background: #fff;
     border: 0;
     border-radius: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2);
     height: 14px;
     position: relative;
     transition: all .2s ease;
-    width: 14px;
+    width: 14px
 }
 
 .plyr--full-ui input[type=range]::-moz-range-progress {
     background: currentColor;
     border-radius: 3px;
-    height: 6px;
+    height: 6px
 }
 
 .plyr--full-ui input[type=range]::-ms-track {
@@ -1166,7 +626,7 @@ a.plyr__control::before {
     transition: box-shadow .3s ease;
     -ms-user-select: none;
     user-select: none;
-    color: transparent;
+    color: transparent
 }
 
 .plyr--full-ui input[type=range]::-ms-fill-upper {
@@ -1176,7 +636,7 @@ a.plyr__control::before {
     height: 6px;
     transition: box-shadow .3s ease;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none
 }
 
 .plyr--full-ui input[type=range]::-ms-fill-lower {
@@ -1187,94 +647,94 @@ a.plyr__control::before {
     transition: box-shadow .3s ease;
     -ms-user-select: none;
     user-select: none;
-    background: currentColor;
+    background: currentColor
 }
 
 .plyr--full-ui input[type=range]::-ms-thumb {
     background: #fff;
     border: 0;
     border-radius: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2);
     height: 14px;
     position: relative;
     transition: all .2s ease;
     width: 14px;
-    margin-top: 0;
+    margin-top: 0
 }
 
 .plyr--full-ui input[type=range]::-ms-tooltip {
-    display: none;
+    display: none
 }
 
 .plyr--full-ui input[type=range]:focus {
-    outline: 0;
+    outline: 0
 }
 
 .plyr--full-ui input[type=range]::-moz-focus-outer {
-    border: 0;
+    border: 0
 }
 
 .plyr--full-ui input[type=range].plyr__tab-focus::-webkit-slider-runnable-track {
-    box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-    outline: 0;
+    box-shadow: 0 0 0 5px rgba(26, 175, 255, .5);
+    outline: 0
 }
 
 .plyr--full-ui input[type=range].plyr__tab-focus::-moz-range-track {
-    box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-    outline: 0;
+    box-shadow: 0 0 0 5px rgba(26, 175, 255, .5);
+    outline: 0
 }
 
 .plyr--full-ui input[type=range].plyr__tab-focus::-ms-track {
-    box-shadow: 0 0 0 5px rgba(26, 175, 255, 0.5);
-    outline: 0;
+    box-shadow: 0 0 0 5px rgba(26, 175, 255, .5);
+    outline: 0
 }
 
 .plyr--full-ui.plyr--video input[type=range]::-webkit-slider-runnable-track {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, .25)
 }
 
 .plyr--full-ui.plyr--video input[type=range]::-moz-range-track {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, .25)
 }
 
 .plyr--full-ui.plyr--video input[type=range]::-ms-track {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, .25)
 }
 
 .plyr--full-ui.plyr--video input[type=range]:active::-webkit-slider-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(255, 255, 255, .5)
 }
 
 .plyr--full-ui.plyr--video input[type=range]:active::-moz-range-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(255, 255, 255, .5)
 }
 
 .plyr--full-ui.plyr--video input[type=range]:active::-ms-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(255, 255, 255, .5)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]::-webkit-slider-runnable-track {
-    background-color: rgba(183, 197, 205, 0.66);
+    background-color: rgba(183, 197, 205, .66)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]::-moz-range-track {
-    background-color: rgba(183, 197, 205, 0.66);
+    background-color: rgba(183, 197, 205, .66)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]::-ms-track {
-    background-color: rgba(183, 197, 205, 0.66);
+    background-color: rgba(183, 197, 205, .66)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]:active::-webkit-slider-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(0, 0, 0, .1)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]:active::-moz-range-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(0, 0, 0, .1)
 }
 
 .plyr--full-ui.plyr--audio input[type=range]:active::-ms-thumb {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(47, 52, 61, 0.2), 0 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15), 0 0 0 1px rgba(47, 52, 61, .2), 0 0 0 3px rgba(0, 0, 0, .1)
 }
 
 .plyr__poster {
@@ -1288,37 +748,37 @@ a.plyr__control::before {
     top: 0;
     transition: opacity .2s ease;
     width: 100%;
-    z-index: 1;
+    z-index: 1
 }
 
 .plyr--stopped.plyr__poster-enabled .plyr__poster {
-    opacity: 1;
+    opacity: 1
 }
 
 .plyr__time {
-    font-size: 14px;
+    font-size: 14px
 }
 
 .plyr__time+.plyr__time::before {
     content: '\2044';
-    margin-right: 10px;
+    margin-right: 10px
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
     .plyr__time+.plyr__time {
-        display: none;
+        display: none
     }
 }
 
 .plyr--video .plyr__time {
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .15)
 }
 
 .plyr__tooltip {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, .9);
     border-radius: 3px;
     bottom: 100%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
     color: #4f5b5f;
     font-size: 14px;
     font-weight: 500;
@@ -1329,17 +789,17 @@ a.plyr__control::before {
     padding: 5px 7.5px;
     pointer-events: none;
     position: absolute;
-    transform: translate(-50%, 10px) scale(0.8);
+    transform: translate(-50%, 10px) scale(.8);
     transform-origin: 50% 100%;
     transition: transform .2s .1s ease, opacity .2s .1s ease;
     white-space: nowrap;
-    z-index: 2;
+    z-index: 2
 }
 
 .plyr__tooltip::before {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid rgba(255, 255, 255, 0.9);
+    border-top: 4px solid rgba(255, 255, 255, .9);
     bottom: -4px;
     content: '';
     height: 0;
@@ -1347,43 +807,43 @@ a.plyr__control::before {
     position: absolute;
     transform: translateX(-50%);
     width: 0;
-    z-index: 2;
+    z-index: 2
 }
 
 .plyr .plyr__control.plyr__tab-focus .plyr__tooltip,
 .plyr .plyr__control:hover .plyr__tooltip,
 .plyr__tooltip--visible {
     opacity: 1;
-    transform: translate(-50%, 0) scale(1);
+    transform: translate(-50%, 0) scale(1)
 }
 
 .plyr .plyr__control:hover .plyr__tooltip {
-    z-index: 3;
+    z-index: 3
 }
 
 .plyr__controls>.plyr__control:first-child .plyr__tooltip,
 .plyr__controls>.plyr__control:first-child+.plyr__control .plyr__tooltip {
     left: 0;
-    transform: translate(0, 10px) scale(0.8);
-    transform-origin: 0 100%;
+    transform: translate(0, 10px) scale(.8);
+    transform-origin: 0 100%
 }
 
 .plyr__controls>.plyr__control:first-child .plyr__tooltip::before,
 .plyr__controls>.plyr__control:first-child+.plyr__control .plyr__tooltip::before {
-    left: 16px;
+    left: 16px
 }
 
 .plyr__controls>.plyr__control:last-child .plyr__tooltip {
     left: auto;
     right: 0;
-    transform: translate(0, 10px) scale(0.8);
-    transform-origin: 100% 100%;
+    transform: translate(0, 10px) scale(.8);
+    transform-origin: 100% 100%
 }
 
 .plyr__controls>.plyr__control:last-child .plyr__tooltip::before {
     left: auto;
     right: 16px;
-    transform: translateX(50%);
+    transform: translateX(50%)
 }
 
 .plyr__controls>.plyr__control:first-child .plyr__tooltip--visible,
@@ -1395,16 +855,16 @@ a.plyr__control::before {
 .plyr__controls>.plyr__control:last-child .plyr__tooltip--visible,
 .plyr__controls>.plyr__control:last-child.plyr__tab-focus .plyr__tooltip,
 .plyr__controls>.plyr__control:last-child:hover .plyr__tooltip {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1)
 }
 
 .plyr--video {
     background: #000;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .plyr--video.plyr--menu-open {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr__video-wrapper {
@@ -1412,31 +872,31 @@ a.plyr__control::before {
     border-radius: inherit;
     overflow: hidden;
     position: relative;
-    z-index: 0;
+    z-index: 0
 }
 
 .plyr__progress {
     flex: 1;
     left: 7px;
     margin-right: 14px;
-    position: relative;
+    position: relative
 }
 
 .plyr__progress input[type=range],
 .plyr__progress__buffer {
     margin-left: -7px;
     margin-right: -7px;
-    width: calc(100% + 14px);
+    width: calc(100% + 14px)
 }
 
 .plyr__progress input[type=range] {
     position: relative;
-    z-index: 2;
+    z-index: 2
 }
 
 .plyr__progress .plyr__tooltip {
     font-size: 14px;
-    left: 0;
+    left: 0
 }
 
 .plyr__progress__buffer {
@@ -1449,88 +909,88 @@ a.plyr__control::before {
     margin-top: -3px;
     padding: 0;
     position: absolute;
-    top: 50%;
+    top: 50%
 }
 
 .plyr__progress__buffer::-webkit-progress-bar {
     background: 0 0;
-    transition: width 0.2s ease;
+    transition: width .2s ease
 }
 
 .plyr__progress__buffer::-webkit-progress-value {
     background: currentColor;
     border-radius: 100px;
-    min-width: 6px;
+    min-width: 6px
 }
 
 .plyr__progress__buffer::-moz-progress-bar {
     background: currentColor;
     border-radius: 100px;
     min-width: 6px;
-    transition: width 0.2s ease;
+    transition: width .2s ease
 }
 
 .plyr__progress__buffer::-ms-fill {
     border-radius: 100px;
-    transition: width 0.2s ease;
+    transition: width .2s ease
 }
 
 .plyr--video .plyr__progress__buffer {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+    color: rgba(255, 255, 255, .25)
 }
 
 .plyr--audio .plyr__progress__buffer {
-    color: rgba(183, 197, 205, 0.66);
+    color: rgba(183, 197, 205, .66)
 }
 
 .plyr--loading .plyr__progress__buffer {
     animation: plyr-progress 1s linear infinite;
-    background-image: linear-gradient(-45deg, rgba(47, 52, 61, 0.6) 25%, transparent 25%, transparent 50%, rgba(47, 52, 61, 0.6) 50%, rgba(47, 52, 61, 0.6) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(-45deg, rgba(47, 52, 61, .6) 25%, transparent 25%, transparent 50%, rgba(47, 52, 61, .6) 50%, rgba(47, 52, 61, .6) 75%, transparent 75%, transparent);
     background-repeat: repeat-x;
     background-size: 25px 25px;
-    color: transparent;
+    color: transparent
 }
 
 .plyr--video.plyr--loading .plyr__progress__buffer {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, .25)
 }
 
 .plyr--audio.plyr--loading .plyr__progress__buffer {
-    background-color: rgba(183, 197, 205, 0.66);
+    background-color: rgba(183, 197, 205, .66)
 }
 
 .plyr__volume {
     align-items: center;
     display: flex;
     flex: 1;
-    position: relative;
+    position: relative
 }
 
 .plyr__volume input[type=range] {
     margin-left: 5px;
     position: relative;
-    z-index: 2;
+    z-index: 2
 }
 
-@media (min-width: 480px) {
+@media (min-width:480px) {
     .plyr__volume {
-        max-width: 90px;
+        max-width: 90px
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
     .plyr__volume {
-        max-width: 110px;
+        max-width: 110px
     }
 }
 
 .plyr--is-ios .plyr__volume {
-    display: none !important;
+    display: none !important
 }
 
 .plyr--is-ios.plyr--vimeo [data-plyr=mute] {
-    display: none !important;
+    display: none !important
 }
 
 .plyr:-webkit-full-screen {
@@ -1538,7 +998,7 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-moz-full-screen {
@@ -1546,7 +1006,7 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-ms-fullscreen {
@@ -1554,7 +1014,7 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:fullscreen {
@@ -1562,148 +1022,148 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-webkit-full-screen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-moz-full-screen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-ms-fullscreen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:fullscreen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-webkit-full-screen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-moz-full-screen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-ms-fullscreen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:fullscreen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-webkit-full-screen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-moz-full-screen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-ms-fullscreen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:fullscreen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-webkit-full-screen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-moz-full-screen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-ms-fullscreen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:fullscreen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-webkit-full-screen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-moz-full-screen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-ms-fullscreen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:fullscreen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-webkit-full-screen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-moz-full-screen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-ms-fullscreen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:fullscreen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-webkit-full-screen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
 .plyr:-moz-full-screen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
 .plyr:-ms-fullscreen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
 .plyr:fullscreen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
     .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 
     .plyr:-moz-full-screen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 
     .plyr:-ms-fullscreen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 
     .plyr:fullscreen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 }
 
@@ -1712,43 +1172,43 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-webkit-full-screen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-webkit-full-screen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-webkit-full-screen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-webkit-full-screen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-webkit-full-screen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-webkit-full-screen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-webkit-full-screen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
     .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 }
 
@@ -1757,43 +1217,43 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-moz-full-screen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-moz-full-screen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-moz-full-screen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-moz-full-screen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-moz-full-screen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-moz-full-screen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-moz-full-screen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
     .plyr:-moz-full-screen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 }
 
@@ -1802,43 +1262,43 @@ a.plyr__control::before {
     border-radius: 0 !important;
     height: 100%;
     margin: 0;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-ms-fullscreen video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr:-ms-fullscreen .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr:-ms-fullscreen .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr:-ms-fullscreen.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr:-ms-fullscreen .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr:-ms-fullscreen .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr:-ms-fullscreen.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
     .plyr:-ms-fullscreen .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 }
 
@@ -1853,43 +1313,43 @@ a.plyr__control::before {
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 10000000;
+    z-index: 10000000
 }
 
 .plyr--fullscreen-fallback video {
-    height: 100%;
+    height: 100%
 }
 
 .plyr--fullscreen-fallback .plyr__video-wrapper {
     height: 100%;
-    width: 100%;
+    width: 100%
 }
 
 .plyr--fullscreen-fallback .plyr__video-embed {
-    overflow: visible;
+    overflow: visible
 }
 
 .plyr--fullscreen-fallback.plyr--vimeo .plyr__video-wrapper {
     height: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
 
 .plyr--fullscreen-fallback .plyr__control .icon--exit-fullscreen {
-    display: block;
+    display: block
 }
 
 .plyr--fullscreen-fallback .plyr__control .icon--exit-fullscreen+svg {
-    display: none;
+    display: none
 }
 
 .plyr--fullscreen-fallback.plyr--hide-controls {
-    cursor: none;
+    cursor: none
 }
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
     .plyr--fullscreen-fallback .plyr__captions {
-        font-size: 21px;
+        font-size: 21px
     }
 }
 
@@ -1902,18 +1362,18 @@ a.plyr__control::before {
     position: absolute;
     right: 0;
     top: 0;
-    z-index: -1;
+    z-index: -1
 }
 
 .plyr__ads>div,
 .plyr__ads>div iframe {
     height: 100%;
     position: absolute;
-    width: 100%;
+    width: 100%
 }
 
 .plyr__ads::after {
-    background: rgba(47, 52, 61, 0.8);
+    background: rgba(47, 52, 61, .8);
     border-radius: 2px;
     bottom: 10px;
     color: #fff;
@@ -1923,11 +1383,11 @@ a.plyr__control::before {
     pointer-events: none;
     position: absolute;
     right: 10px;
-    z-index: 3;
+    z-index: 3
 }
 
 .plyr__ads::after:empty {
-    display: none;
+    display: none
 }
 
 .plyr__cues {
@@ -1940,11 +1400,11 @@ a.plyr__control::before {
     position: absolute;
     top: 50%;
     width: 3px;
-    z-index: 3;
+    z-index: 3
 }
 
 .plyr--no-transition {
-    transition: none !important;
+    transition: none !important
 }
 
 .plyr__sr-only {
@@ -1954,33 +1414,9 @@ a.plyr__control::before {
     height: 1px !important;
     padding: 0 !important;
     position: absolute !important;
-    width: 1px !important;
+    width: 1px !important
 }
 
 .plyr [hidden] {
-    display: none !important;
-}
-
-footer {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-footer h6 {
-    text-align: center;
-    font-size: 0.8em;
-    color: #cccccc;
-}
-
-.error {
-    width: 100%;
-    height: calc(100vh - 100px);
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10em;
+    display: none !important
 }

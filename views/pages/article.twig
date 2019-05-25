@@ -27,7 +27,7 @@
         <div class="content">
             {% for _other in others %}
                 {% if _other.categorie_name != "Home" %}
-                    <article {% if _other.categorie_link != "" %} onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'"{% endif %}>
+                    <article {% if _other.categorie_link != "" %} onclick="window.location='{{ path_for('article', { categorie: _other.categorie_link }) }}'"{% endif %}>
                         <div class="cover">
                             <img src="../assets/image/{{ _other.categorie_image }}">
                         </div>

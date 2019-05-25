@@ -1,7 +1,6 @@
 {% include('partial/header.twig') %}
 
 <h1>Login</h1>
-<h4><?= $message ?></h4>
 <div class="container">
     <form method="post">
         <div class="row">
@@ -23,6 +22,7 @@
         <div class="row">
             <input type="submit">
         </div>
+        <div class="row" style="text-align: center; color: red;">{{ message }}</div>
     </form>
 </div>
 

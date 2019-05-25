@@ -1,0 +1,74 @@
+.article .presentation h2 {
+    font-weight: 400;
+    margin: -10px 0 10px 0;
+}
+
+.article .presentation p {
+    font-weight: 300;
+    font-size: 1em;
+}
+
+.article .work {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article .work legend {
+    color: rgb(169, 169, 169);
+    padding-top: 10px;
+    width: 90%;
+    text-align: center;
+}
+
+.article .also {
+    width: 80%;
+    margin: 100px auto 0 auto;
+}
+
+.article .also .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.article .also .content article {
+    flex-direction: column;
+    width: 350px;
+    margin: 0 20px 20px 0;
+}
+
+.article .also .content article .cover {
+    width: 100%;
+}
+
+.article .also .content article .cover img {
+    width: auto;
+    height: 100%;
+}
+
+.article .also .content article .title {
+    width: 100%;
+    height: 50%;
+}
+
+@media only screen and (max-width: 990px) {
+    .article .also {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .article .also .content {
+        justify-content: center;
+    }
+    .article .also .content article {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .article .also .content article .title {
+        height: 25%;
+    }
+}

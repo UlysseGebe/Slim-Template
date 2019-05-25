@@ -1,0 +1,186 @@
+header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    transition: background 0.3s ease, border 0.3s ease, height 1s ease;
+    overflow: hidden;
+}
+
+header a {
+    color: #191919;
+    text-decoration: none;
+}
+
+header nav {
+    width: 30%;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header nav ul li {
+    padding-left: 20px;
+}
+
+header nav ul li a {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: #999999;
+    transition: color 0.2s ease;
+}
+
+header nav ul li a:hover {
+    color: black;
+}
+
+header nav ul li a.active {
+    color: black;
+    font-weight: 400;
+}
+
+header h1 {
+    font-size: 2em;
+    transition: opacity 0.3s ease;
+    display: none;
+    opacity: 0;
+}
+
+header .social {
+    width: 30%;
+    text-align: end;
+}
+
+header .social a {
+    padding-right: 20px;
+}
+
+header .social a img {
+    width: 30px;
+}
+
+header .burgermenu {
+    position: absolute;
+    top: 38px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+    display: none;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+header .burgermenu .lines {
+    background-color: black;
+    width: 24px;
+    height: 2px;
+    position: absolute;
+    transition-delay: 0.3s;
+    transition: transform 0.5s ease;
+}
+
+header .burgermenu .lines::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    top: 6px;
+    cursor: pointer;
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+header .burgermenu .lines::after {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    bottom: 6px;
+    transition-delay: 0.3s;
+    transition: transform 0.5s ease;
+}
+
+@media only screen and (max-width: 990px) {
+    header{
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    header .burgermenu {
+        display: flex;
+    }
+    header .social {
+        display: none;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    header .social a:last-child {
+        padding: 0;
+    }
+    header .social a img {
+        width: 40px;
+    }
+    header nav {
+        display: none;
+        text-align: center;
+        height: calc(100vh - 90px);
+    }
+    header nav ul {
+        flex-direction: column;
+        margin: 0;
+        height: 100%;
+        justify-content: center;
+    }
+    header nav ul li {
+        padding: 0;
+        font-size: 3em;
+    }
+    header nav ul li:first-child {
+        margin-bottom: 10%;
+    }
+}
+
+header.is-active {
+    background-color: #ffffff !important;
+    border-bottom: 5px solid #f2f2f2 !important;
+    height: 100vh;
+}
+
+header h1.is-active {
+    display: none !important;
+}
+
+header .social.is-active {
+    display: block;
+}
+header nav.is-active {
+    display: block;
+}
+
+header .burgermenu .lines.is-active {
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+header .burgermenu .lines.is-active::before {
+    transform: scaleX(0);
+}
+
+header .burgermenu .lines.is-active::after {
+    bottom: 0;
+    transform: rotate(90deg);
+}
