@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>Vidéo</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Nom de la vidéo:</label>
             <input type="name" class="form-control" placeholder="Entrer catégorie" name="name">
@@ -13,22 +13,22 @@
                 <option selected>Liste des catégorie disponible</option>
                 {% for _categorie in categories %}
                     {% if _categorie.categorie_name != 'Home' %}
-                        <option value="{{ _categorie.categorie_name }}">{{ _categorie.categorie_name }}</option>
+                        <option value="{{ _categorie.categorie_link }}">{{ _categorie.categorie_name }}</option>
                     {% endif %}
                 {% endfor %}
             </select>
         </div>
         <div class="form-group">
             <label for="fallback">FallBack de la vidéo:</label>
-            <input type="text" class="form-control" placeholder="Entrer une légende" name="fallback">
+            <input type="text" class="form-control" placeholder="Entrer un fallback" name="fallback">
         </div>
         <div class="form-group">
-            <label for="videoToUpload">Poster de la vidéo:</label>
-            <input type="file" class="form-control" name="videoToUpload">
-        </div>
-        <div class="form-group">
-            <label for="imageToUpload">Lien de la vidéo:</label>
+            <label for="imageToUpload">Poster de la vidéo:</label>
             <input type="file" class="form-control" name="imageToUpload">
+        </div>
+        <div class="form-group">
+            <label for="videoToUpload">Lien de la vidéo:</label>
+            <input type="file" class="form-control" name="videoToUpload">
         </div>
         <div class="form-group">
             <label for="description">Description de la vidéo:</label>

@@ -147,30 +147,25 @@ $app
                 if(isset($_POST['name'], $_POST['link'], $_POST['legend'], $_FILES["imageToUpload"], $_POST['description'])) {
                     if(!empty($_POST['name']) AND !empty($_POST['link']) AND !empty($_POST['legend']) AND !empty($_FILES["imageToUpload"]) AND !empty($_POST['description'])) {
                         include('imageLoader.php');
-                        if ($uploadOk == 0) {
-                            $message = 'Sorry, your file was not uploaded.';
+                        if ($imageResult == 0) {
+                            $data = [
+                                'name' => trim($_POST['name']),
+                                'legend' => trim($_POST['legend']),
+                                'content' => trim($_POST['description']),
+                                'link' => trim($_POST['link']),
+                                'image' => trim($_FILES["imageToUpload"]["name"]),
+                            ];
+
+                            $prepare = $this->db->prepare('INSERT INTO categorie (categorie_name, categorie_legend, categorie_content, categorie_link, categorie_image) VALUES (:name, :legend, :content, :link, :image)');
+                            $prepare->execute($data);
+                            $message = 'Une catégorie a été ajoutée';
+                            $viewData['message'] = $message;
+                            $viewData['color'] = 'green';
+                        } 
+                        else {
+                            $message = 'Sorry, there was an error uploading your file.';
                             $viewData['message'] = $message;
                             $viewData['color'] = 'red';
-                        } else {
-                            if (move_uploaded_file($_FILES["imageToUpload"]["tmp_name"], $target_file)) {
-                                $data = [
-                                    'name' => trim($_POST['name']),
-                                    'legend' => trim($_POST['legend']),
-                                    'content' => trim($_POST['description']),
-                                    'link' => trim($_POST['link']),
-                                    'image' => trim($_FILES["imageToUpload"]["name"]),
-                                ];
-            
-                                $prepare = $this->db->prepare('INSERT INTO categorie (categorie_name, categorie_legend, categorie_content, categorie_link, categorie_image) VALUES (:name, :legend, :content, :link, :image)');
-                                $prepare->execute($data);
-                                $message = 'Une catégorie a été ajoutée';
-                                $viewData['message'] = $message;
-                                $viewData['color'] = 'green';
-                            } else {
-                                $message = 'Sorry, there was an error uploading your file.';
-                                $viewData['message'] = $message;
-                                $viewData['color'] = 'red';
-                            }
                         }
                 }
                 else {
@@ -209,28 +204,32 @@ $app
             $viewData['categories'] = $categories;
 
             if ($request->getMethod() == 'POST') {
-                if(isset($_POST['name'], $_POST['categorie'], $_POST['videoToUpload'], $_POST['description'], $_POST['imageToUpload'], $_POST['fallback'])) {
-                    if(!empty($_POST['name']) AND !empty($_POST['categorie']) AND !empty($_POST['videoToUpload']) AND !empty($_POST['description']) AND !empty($_POST['imageToUpload']) AND !empty($_POST['fallback'])) {
-                    $data = [
-                        'name' => trim($_POST['name']),
-                        'categorie' => trim($_POST['categorie']),
-                        'url' => trim($_POST['videoToUpload']),
-                        'description' => trim($_POST['description']),
-                        'poster' => trim($_POST['imageToUpload']),
-                        'fallback' => trim($_POST['fallback']),
-                    ];
-                
-                    $prepare = $this->db->prepare('INSERT INTO video (video_name, video_categorie, video_url, video_description, video_poster, video_fallback) VALUES (:name, :categorie, :url, :description, :poster, :fallback)');
-                    $prepare->execute($data);
-                    
-                    $message = 'Une Video a été ajoutée';
-                    $viewData['message'] = $message;
-                    $viewData['color'] = 'green';
-                }
-                else {
-                       $message = 'Veuillez remplir tous les champs';
-                       $viewData['message'] = $message;
-                       $viewData['color'] = 'red';
+                if(isset($_POST['name'], $_POST['categorie'], $_FILES['videoToUpload'], $_POST['description'], $_FILES['imageToUpload'], $_POST['fallback'])) {
+                    if(!empty($_POST['name']) AND !empty($_POST['categorie']) AND !empty($_FILES['videoToUpload']) AND !empty($_POST['description']) AND !empty($_FILES['imageToUpload']) AND !empty($_POST['fallback'])) {
+                        include('imageLoader.php');
+                        include('videoLoader.php');
+                        if ($imageResult == 0 AND $videoResult == 0) {
+                            $data = [
+                                'name' => trim($_POST['name']),
+                                'categorie' => trim($_POST['categorie']),
+                                'url' => trim($_FILES["videoToUpload"]["name"]),
+                                'description' => trim($_POST['description']),
+                                'poster' => trim($_FILES["imageToUpload"]["name"]),
+                                'fallback' => trim($_POST['fallback']),
+                            ];
+                        
+                            $prepare = $this->db->prepare('INSERT INTO video (video_name, video_categorie, video_url, video_description, video_poster, video_fallback) VALUES (:name, :categorie, :url, :description, :poster, :fallback)');
+                            $prepare->execute($data);
+                            
+                            $message = 'Une Video a été ajoutée';
+                            $viewData['message'] = $message;
+                            $viewData['color'] = 'green';
+                        }
+                        else {
+                            $message = 'Veuillez remplir tous les champs et vérifier le format des fichiers';
+                            $viewData['message'] = $message;
+                            $viewData['color'] = 'red';
+                        }
                     }
                 }
             }
