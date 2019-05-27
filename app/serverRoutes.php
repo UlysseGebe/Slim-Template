@@ -9,8 +9,8 @@ $app
         '/', 
         function ($request, $response, $args) {
             if (!empty($_SESSION['user'])) {
-                header('location: My-Space');
-                exit;
+                $url = $this->router->pathFor('adminpage');
+                return $response->withRedirect($url);
             }
             $style = 'backstyle';
 
@@ -38,8 +38,8 @@ $app
                         if($password === $user->password) {
                             unset($user->password);
                             $_SESSION['user'] = $user;
-                            header('location: My-Space');
-                            exit;
+                            $url = $this->router->pathFor('adminpage');
+                            return $response->withRedirect($url);
                         }
                         else {
                             $message = 'Something is rong';
@@ -64,8 +64,8 @@ $app
         function ($request, $response, $args) 
         {
             if (!empty($_SESSION['user'])) {
-                header('location: My-Space');
-                exit;
+                $url = $this->router->pathFor('adminpage');
+                return $response->withRedirect($url);
             }
             $style = 'backstyle';
             // View data
@@ -84,8 +84,8 @@ $app
                     $prepare->bindValue('password', $password);
                     $prepare->execute();
 
-                    header('location: Login');
-                    exit;
+                    $url = $this->router->pathFor('login');
+                    return $response->withRedirect($url);
                 }
                 else {
                     if(!empty($_POST['login'])){
@@ -115,8 +115,8 @@ $app
         function($request, $response)
         {
             if (empty($_SESSION['user'])) {
-                header('location: '.ADURL.'');
-                exit;
+                $url = $this->router->pathFor('login');
+                return $response->withRedirect($url);
             }
 
             $query = $this->db->query('SELECT * FROM categorie');
@@ -145,8 +145,8 @@ $app
         '/Categorie', 
         function ($request, $response, $args) {
             if (empty($_SESSION['user'])) {
-                header('location: '.ADURL.'');
-                exit;
+                $url = $this->router->pathFor('login');
+                return $response->withRedirect($url);
             }
             $style = 'bootstrap';
             $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
@@ -201,8 +201,8 @@ $app
         '/Video', 
         function ($request, $response, $args) {
             if (empty($_SESSION['user'])) {
-                header('location: '.ADURL.'');
-                exit;
+                $url = $this->router->pathFor('login');
+                return $response->withRedirect($url);
             }
             $style = 'bootstrap';
             $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
@@ -270,16 +270,15 @@ $app
             session_destroy ();
 
             // On redirige le visiteur vers la page d'accueil
-            header('location: '.ADURL.'');
-            exit;
+            $url = $this->router->pathFor('login');
+            return $response->withRedirect($url);
         }
     )
     ->setName('logout')
 ;
 
 // 404
-$container['notFoundHandler'] = function($container)
-{
+$container['notFoundHandler'] = function($container) {
     return function($request, $response) use ($container)
     {
         $viewData = [
@@ -291,8 +290,7 @@ $container['notFoundHandler'] = function($container)
 };
 
 // 500
-$container['errorHandler'] = function($container)
-{
+$container['errorHandler'] = function($container) {
     return function($request, $response) use ($container)
     {
         $viewData = [
