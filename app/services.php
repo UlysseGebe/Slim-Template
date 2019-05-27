@@ -28,3 +28,21 @@ $container['db'] = function($container)
 
     return $pdo;
 };
+
+// 404
+$container['notFoundHandler'] = function($container)
+{
+    return function($request, $response) use ($container)
+    {
+        return $container['view']->render($response->withStatus(404), 'pages/404.twig');
+    };
+};
+
+// 500
+$container['errorHandler'] = function($container)
+{
+    return function($request, $response) use ($container)
+    {
+        return $container['view']->render($response->withStatus(500), 'pages/404.twig');
+    };
+};

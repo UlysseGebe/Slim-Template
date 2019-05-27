@@ -19,9 +19,9 @@
                     {% for _categorie in categories %}
                         <tr>
                             <th scope="row">scope</th>
-                            <td>{{ _categorie.categorie_name }}k</td>
+                            <td>{{ _categorie.categorie_name }}</td>
                             <td>{{ _categorie.categorie_legend }}</td>
-                            <td>{{ _categorie.categorie_content }}</td>
+                            <td class="modif">{{ _categorie.categorie_content }}</td>
                             <td>{{ _categorie.categorie_link }}</td>
                             <td>{{ _categorie.categorie_image }}</td>
                         </tr>
@@ -48,10 +48,10 @@
                     {% for _video in videos %}
                         <tr>
                             <th scope="row">scope</th>
-                            <td>{{ _video.video_name }}k</td>
+                            <td>{{ _video.video_name }}</td>
                             <td>{{ _video.video_categorie }}</td>
                             <td>{{ _video.video_url }}<br>{{ _video.video_poster }}</td>
-                            <td>{{ _video.video_description }}</td>
+                            <td class="modif">{{ _video.video_description }}</td>
                             <td>{{ _video.video_fallback }}</td>
                         </tr>
                     {% endfor %}
