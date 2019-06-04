@@ -1,5 +1,29 @@
 <?php
 
+// 404
+$container['notFoundHandler'] = function($container) {
+    return function($request, $response) use ($container)
+    {
+        $viewData = [
+            'code' => 404,
+        ];
+
+        return $container['view']->render($response->withStatus(404), 'ressources/error.twig', $viewData);
+    };
+};
+
+// 500
+$container['errorHandler'] = function($container) {
+    return function($request, $response) use ($container)
+    {
+        $viewData = [
+            'code' => 500,
+        ];
+
+        return $container['view']->render($response->withStatus(500), 'ressources/error.twig', $viewData);
+    };
+};
+
 session_cache_limiter(false);
 session_start();
 
@@ -276,27 +300,3 @@ $app
     )
     ->setName('logout')
 ;
-
-// 404
-$container['notFoundHandler'] = function($container) {
-    return function($request, $response) use ($container)
-    {
-        $viewData = [
-            'code' => 404,
-        ];
-
-        return $container['view']->render($response->withStatus(404), 'ressources/error.twig', $viewData);
-    };
-};
-
-// 500
-$container['errorHandler'] = function($container) {
-    return function($request, $response) use ($container)
-    {
-        $viewData = [
-            'code' => 500,
-        ];
-
-        return $container['view']->render($response->withStatus(500), 'ressources/error.twig', $viewData);
-    };
-};
