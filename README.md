@@ -1,17 +1,29 @@
 # Projet Slim Twig
 
-One Paragraph of project description goes here
+Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données.
 
-## Getting Started
+## Affichage du site
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Les differentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste dé d'article, qui sont des présentations de différents projets.
 
-### Prerequisites
+### Home
 
-What things you need to install the software and how to install them
+La page 'Home' est la pierre angulaire du site. Celle-ci permet d'afficher les différentes catégories à l'aide d'une boucle for.
 
-```
-Give examples
+```twig
+{% for _categorie in categories %}
+    {% if _categorie.categorie_name != 'Home' %}
+    <article onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'">
+        <div class="cover">
+            <img src="../assets/image/{{ _categorie.categorie_image }}">
+        </div>
+        <div class="title">
+            <h3>{{ _categorie.categorie_name }}</h3>
+            <span>{{ _categorie.categorie_legend }}</span>
+        </div>
+    </article>
+    {% endif %}
+{% endfor %}
 ```
 
 ### Installing
