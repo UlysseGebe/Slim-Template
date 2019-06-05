@@ -1,4 +1,4 @@
-# Project Title
+# Projet Slim Twig
 
 One Paragraph of project description goes here
 

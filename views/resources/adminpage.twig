@@ -18,7 +18,15 @@
                 <tbody>
                     {% for _categorie in categories %}
                         <tr>
-                            <th scope="row">scope</th>
+                            {% if _categorie.id == 1 %}
+                            <th scope="row">Home</th>
+                            {% else %}
+                            <th scope="row"><a href="{{ path_for('delete', {categorie: 'categorie' , delete: _categorie.id }) }}">X</a></th>
+                            {% endif %}
+                            <th scope="row" class="classement">
+                                <a class="up" href="{{ path_for('change', {categorie: 'categorie' , change: _categorie.classement , type: '0' }) }}"></a>
+                                <a class="down" href="{{ path_for('change', {categorie: 'categorie' , change: _categorie.classement , type: '1' }) }}"></a>
+                            </th>
                             <td>{{ _categorie.categorie_name }}</td>
                             <td>{{ _categorie.categorie_legend }}</td>
                             <td class="modif">{{ _categorie.categorie_content }}</td>
@@ -36,7 +44,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                         <th scope="col">Nom</th>
                         <th scope="col">Categorie</th>
                         <th scope="col">Liens</th>
@@ -47,7 +56,11 @@
                 <tbody>
                     {% for _video in videos %}
                         <tr>
-                            <th scope="row">scope</th>
+                            <th scope="row"><a href="{{ path_for('delete', {categorie: 'item' , delete: _video.id }) }}">X</a></th>
+                            <th scope="row" class="classement">
+                                <a class="up" href="{{ path_for('change', {categorie: 'item' , change: _video.classement , type: '0' }) }}"></a>
+                                <a class="down" href="{{ path_for('change', {categorie: 'item' , change: _video.classement , type: '1' }) }}"></a>
+                            </th>
                             <td>{{ _video.video_name }}</td>
                             <td>{{ _video.video_categorie }}</td>
                             <td>{{ _video.video_url }}<br>{{ _video.video_poster }}</td>

@@ -1,31 +1,35 @@
 <?php
 
+session_cache_limiter(false);
+session_start();
+
 // 404
 $container['notFoundHandler'] = function($container) {
     return function($request, $response) use ($container)
     {
         $viewData = [
             'code' => 404,
+            'title' => 404,
+            'style' => 'style',
         ];
 
-        return $container['view']->render($response->withStatus(404), 'ressources/error.twig', $viewData);
+        return $container['view']->render($response->withStatus(404), 'resources/error.twig', $viewData);
     };
 };
 
 // 500
-$container['errorHandler'] = function($container) {
-    return function($request, $response) use ($container)
-    {
-        $viewData = [
-            'code' => 500,
-        ];
+// $container['errorHandler'] = function($container) {
+//     return function($request, $response) use ($container)
+//     {
+//         $viewData = [
+//             'code' => 500,
+//             'title' => 500,
+//             'style' => 'style',
+//         ];
 
-        return $container['view']->render($response->withStatus(500), 'ressources/error.twig', $viewData);
-    };
-};
-
-session_cache_limiter(false);
-session_start();
+//         return $container['view']->render($response->withStatus(500), 'resources/error.twig', $viewData);
+//     };
+// };
 
 // Home
 $app
@@ -143,11 +147,14 @@ $app
                 return $response->withRedirect($url);
             }
 
-            $query = $this->db->query('SELECT * FROM categorie');
+            $query = $this->db->query('SELECT * FROM categorie ORDER BY classement');
             $categories = $query->fetchAll();
             
-            $query = $this->db->query('SELECT * FROM video');
+            $query = $this->db->query('SELECT * FROM video ORDER BY classement');
             $videos = $query->fetchAll();
+
+            $query = $this->db->query('SELECT id FROM video WHERE id > 3 LIMIT 1');
+            $test = $query->fetch();
 
             $style = 'bootstrap';
             $boot = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
@@ -180,11 +187,15 @@ $app
             $viewData['boot'] = $boot;
 
             if ($request->getMethod() == 'POST') {
+                $query = $this->db->query('SELECT COUNT(*) AS totale FROM categorie');
+                $categorie = $query->fetch();
+                $totale = $categorie->totale + 1;
                 if(isset($_POST['name'], $_POST['link'], $_POST['legend'], $_FILES["imageToUpload"], $_POST['description'])) {
                     if(!empty($_POST['name']) AND !empty($_POST['link']) AND !empty($_POST['legend']) AND !empty($_FILES["imageToUpload"]) AND !empty($_POST['description'])) {
                         include('imageLoader.php');
                         if ($imageResult == 0) {
                             $data = [
+                                'classement' => (int)$totale,
                                 'name' => trim($_POST['name']),
                                 'legend' => trim($_POST['legend']),
                                 'content' => trim($_POST['description']),
@@ -192,7 +203,7 @@ $app
                                 'image' => trim($_FILES["imageToUpload"]["name"]),
                             ];
 
-                            $prepare = $this->db->prepare('INSERT INTO categorie (categorie_name, categorie_legend, categorie_content, categorie_link, categorie_image) VALUES (:name, :legend, :content, :link, :image)');
+                            $prepare = $this->db->prepare('INSERT INTO categorie (classement, categorie_name, categorie_legend, categorie_content, categorie_link, categorie_image) VALUES (:classement, :name, :legend, :content, :link, :image)');
                             $prepare->execute($data);
                             $message = 'Une catégorie a été ajoutée';
                             $viewData['message'] = $message;
@@ -246,7 +257,11 @@ $app
                         include('imageLoader.php');
                         include('videoLoader.php');
                         if ($imageResult == 0 AND $videoResult == 0) {
+                            $query = $this->db->query('SELECT COUNT(*) AS totale FROM video');
+                            $video = $query->fetch();
+                            $totale = $video->totale + 1;
                             $data = [
+                                'classement' => (int)$totale,
                                 'name' => trim($_POST['name']),
                                 'categorie' => trim($_POST['categorie']),
                                 'url' => trim($_FILES["videoToUpload"]["name"]),
@@ -255,7 +270,7 @@ $app
                                 'fallback' => trim($_POST['fallback']),
                             ];
                         
-                            $prepare = $this->db->prepare('INSERT INTO video (video_name, video_categorie, video_url, video_description, video_poster, video_fallback) VALUES (:name, :categorie, :url, :description, :poster, :fallback)');
+                            $prepare = $this->db->prepare('INSERT INTO video (classement, video_name, video_categorie, video_url, video_description, video_poster, video_fallback) VALUES (:classement, :name, :categorie, :url, :description, :poster, :fallback)');
                             $prepare->execute($data);
                             
                             $message = 'Une Video a été ajoutée';
@@ -299,4 +314,98 @@ $app
         }
     )
     ->setName('logout')
+;
+
+$app
+    ->get(
+        '/Delete/{categorie}/{delete}',
+        function($request, $response, $args)
+        {
+            if ($args['categorie'] == 'categorie') {
+                $prepare = $this->db->prepare('SELECT * FROM categorie WHERE id = ?');
+                $prepare->execute(array($args['delete']));
+                $verify = $prepare->fetch();
+            }
+            else if ($args['categorie'] == 'item') {
+                $prepare = $this->db->prepare('SELECT * FROM video WHERE id = ?');
+                $prepare->execute(array($args['delete']));
+                $verify = $prepare->fetch();
+            }
+
+            if (!empty($verify)) {
+                if ($args['categorie'] == 'categorie') {
+                    $suppr = $this->db->prepare('DELETE FROM categorie WHERE id = ?');
+                    $suppr->execute(array($args['delete']));
+                    unlink('../assets/image/'.$verify->categorie_image);
+                }
+                else {
+                    $suppr = $this->db->prepare('DELETE FROM video WHERE id = ?');
+                    $suppr->execute(array($args['delete']));
+                    unlink('../assets/video/'.$verify->video_url);
+                    unlink('../assets/image/'.$verify->video_poster);
+                }
+            }
+            else {
+                $url = $this->router->pathFor('adminpage');
+                return $response->withRedirect($url);
+            }
+
+            // View data
+            $viewData = [];
+
+            // On redirige le visiteur vers la page d'accueil
+            $url = $this->router->pathFor('adminpage');
+            return $response->withRedirect($url);
+        }
+    )
+    ->setName('delete')
+;
+
+$app
+    ->get(
+        '/Change/{categorie}/{change}/{type}',
+        function($request, $response, $args)
+        {
+            if ($args['categorie'] == 'categorie') {
+                if ($args['type'] == '1') {
+                    $prepare = $this->db->prepare('SELECT classement FROM categorie WHERE classement > ? LIMIT 1');
+                }
+                else if ($args['type'] == '0') {
+                    $prepare = $this->db->prepare('SELECT classement FROM categorie WHERE classement < ? ORDER BY classement DESC LIMIT 1');
+                }
+                $prepare->execute(array($args['change']));
+                $test = $prepare->fetch();
+                if (!empty($test)) {
+                    $prepare = $this->db->prepare('UPDATE categorie SET classement = CASE WHEN classement = :bf THEN :cu WHEN classement = :cu THEN :bf END WHERE classement IN (:bf, :cu)');
+                    $prepare->bindValue('bf', $test->classement);
+                    $prepare->bindValue('cu', $args['change']);
+                    $prepare->execute();
+                }
+            }
+            else if ($args['categorie'] == 'item') {
+                if ($args['type'] == '1') {
+                    $prepare = $this->db->prepare('SELECT classement FROM video WHERE classement > ? LIMIT 1');
+                }
+                else if ($args['type'] == '0') {
+                    $prepare = $this->db->prepare('SELECT classement FROM video WHERE classement < ? ORDER BY classement DESC LIMIT 1');
+                }
+                $prepare->execute(array($args['change']));
+                $test = $prepare->fetch();
+                if (!empty($test)) {
+                    $prepare = $this->db->prepare('UPDATE video SET classement = CASE WHEN classement = :bf THEN :cu WHEN classement = :cu THEN :bf END WHERE classement IN (:bf, :cu)');
+                    $prepare->bindValue('bf', $test->classement);
+                    $prepare->bindValue('cu', $args['change']);
+                    $prepare->execute();
+                }
+            }
+
+            // View data
+            $viewData = [];
+
+            // On redirige le visiteur vers la page d'accueil
+            $url = $this->router->pathFor('adminpage');
+            return $response->withRedirect($url);
+        }
+    )
+    ->setName('change')
 ;
