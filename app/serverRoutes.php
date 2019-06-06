@@ -45,6 +45,7 @@ $app
             // View data
             $viewData = [];
             $viewData['style'] = $style;
+            $viewData['title'] = 'Login';
 
             if ($request->getMethod() == 'POST') {
                 if(!empty($_POST)) {
@@ -99,6 +100,7 @@ $app
             // View data
             $viewData = [];
             $viewData['style'] = $style;
+            $viewData['title'] = 'Register';
 
             if ($request->getMethod() == 'POST') {
                 if(!empty($_POST['login']) & !empty($_POST['password'])){
@@ -164,6 +166,7 @@ $app
             $viewData['boot'] = $boot;
             $viewData['categories'] = $categories;
             $viewData['videos'] = $videos;
+            $viewData['title'] = 'My-Space';
 
             return $this->view->render($response, 'resources/adminpage.twig', $viewData);
         }
@@ -185,6 +188,7 @@ $app
             $viewData = [];
             $viewData['style'] = $style;
             $viewData['boot'] = $boot;
+            $viewData['title'] = 'Categorie';
 
             if ($request->getMethod() == 'POST') {
                 $query = $this->db->query('SELECT COUNT(*) AS totale FROM categorie');
@@ -245,6 +249,7 @@ $app
             $viewData = [];
             $viewData['style'] = $style;
             $viewData['boot'] = $boot;
+            $viewData['title'] = 'Video';
 
             $prepare = $this->db->prepare('SELECT * FROM categorie WHERE categorie_name != ?');
             $prepare->execute(array('Home'));
