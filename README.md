@@ -194,7 +194,7 @@ The 'Home' page is the cornerstone of the site. This allows you to display the d
 ```
 'Home' is also in the category table and must therefore be excluded from the loop with a condition.
 
-##### Utilisation des arguments
+##### Use of arguments
 The redirect link to the page of the targeted category is unique thanks to the use of path_for and an argument.
 
 ```twig
@@ -210,7 +210,7 @@ $categories = $query->fetchAll();
 ```
 'classement' allows you to change the order in which the categories are displayed.
 
-### Pages catégories
+### Pages categories
 
 #### TWIG
 To display the content of the articles in the database, you must use a for loop
@@ -234,11 +234,11 @@ $prepare->execute(array($arguments['categorie']));
 $video = $prepare->fetchAll();
 ```
 
-## Modification du site
+## Modification of the site
 The owner of the site can modify the information in the database by connecting to it via a login system.<br/>
 The .htacces and index.php files are in the server folder.
 
-### Register et Login
+### Register & Login
 The forms are as seen in progress and there is a memorization of the login username with the use of cookies.
 
 ```php
@@ -246,7 +246,7 @@ setcookie('login', $login, time() + 10, '/');
 ```
 If the user is logged in, he or she cannot access these pages.
 
-### Page administrateur
+### Administrator page
 This page allows you to manage categories and articles.
 
 ```twig
@@ -272,7 +272,7 @@ This page allows you to manage categories and articles.
 It is possible to delete (from the database and assets file) and change the order in the tables.<br/>
 If the user is not logged in, he/she cannot access this page.
 
-## Ajout Catégorie et Video/Articles
+## Add Category and Video/Articles
 These pages are forms to add a category or article.
 
 ```php
