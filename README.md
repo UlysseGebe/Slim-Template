@@ -1,5 +1,5 @@
 ___
-! Les videos ne peuvent pas être versionnées sur git ou déplacées car trop volumineuses !
+! Les videos ne peuvent pas être versionnées sur git ou déplacées car trop volumineuses !<br/>
 ! Videos cannot be versioned on git or moved because they are too large !
 ___
 [English](#Slim-Twig-Project) - [Fançais](#Projet-Slim-Twig)
@@ -22,7 +22,7 @@ Ce projet Slim Twig est un template pour portfolio axé pour les cinématographe
 
 ## Affichage du site
 
-Les différentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste d'article, qui sont des présentations de différents projets. Cette partie du site utilise deux des trois tableaux.
+Les différentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste d'article, qui sont des présentations de différents projets. Cette partie du site utilise deux des trois tableaux.<br/>
 Le fichier .htacces et index.php sont dans le dossier web.
 
 ### Home
@@ -88,7 +88,7 @@ $video = $prepare->fetchAll();
 ```
 
 ## Modification du site
-Le possesseur du site peut modifier les informations de la base de données en se connecter à celle-ci via un système de login 
+Le possesseur du site peut modifier les informations de la base de données en se connecter à celle-ci via un système de login.<br/>
 Le fichier .htacces et index.php sont dans le dossier serveur.
 
 ### Register et Login
@@ -123,7 +123,7 @@ Cette page permet de gérer les catégories et les articles.
     </tr>
 {% endfor %}
 ```
-Il est possible de supprimer (de la base de données et du fichier assets) et de modifier l'ordre dans les tableaux .
+Il est possible de supprimer (de la base de données et du fichier assets) et de modifier l'ordre dans les tableaux.<br>
 Si l'utilisateur n'est pas connecté, il ne peut pas accéder à cette page.
 
 ## Ajout Catégorie et Video/Articles
@@ -169,7 +169,7 @@ This Slim Twig project is a portfolio template for cinematographers and filmmake
 
 ## Display of the site
 
-The different pages are arranged in a logical way. There is a "Home'" page that displays the different categories and each category has a link that sends to a list of articles, which are presentations of different projects. This part of the site uses two of the three tables.
+The different pages are arranged in a logical way. There is a "Home'" page that displays the different categories and each category has a link that sends to a list of articles, which are presentations of different projects. This part of the site uses two of the three tables.<br/>
 The.htacces file and index.php are in the web folder.
 
 ### Home
@@ -235,7 +235,7 @@ $video = $prepare->fetchAll();
 ```
 
 ## Modification du site
-The owner of the site can modify the information in the database by connecting to it via a login system 
+The owner of the site can modify the information in the database by connecting to it via a login system.<br/>
 The .htacces and index.php files are in the server folder.
 
 ### Register et Login
@@ -269,7 +269,7 @@ This page allows you to manage categories and articles.
     </tr>
 {% endfor %}
 ```
-It is possible to delete (from the database and assets file) and change the order in the tables.
+It is possible to delete (from the database and assets file) and change the order in the tables.<br/>
 If the user is not logged in, he/she cannot access this page.
 
 ## Ajout Catégorie et Video/Articles
