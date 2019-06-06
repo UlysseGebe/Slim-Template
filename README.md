@@ -1,16 +1,18 @@
+[English](# Slim Twig Project) - [Fançais](# Projet Slim Twig)
 # Projet Slim Twig
 
-Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données.
+Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données. Il y a trois tableaux dans la base de donnée.
 
 ## Affichage du site
 
-Les differentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste dé d'article, qui sont des présentations de différents projets.
+Les differentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste d'article, qui sont des présentations de différents projets. Cette partie du site utilise deux des trois tableaux.
 
 ### Home
+#### TWIG
 
 La page 'Home' est la pierre angulaire du site. Celle-ci permet d'afficher les différentes catégories à l'aide d'une boucle for.
 
-```twig
+```twigs
 {% for _categorie in categories %}
     {% if _categorie.categorie_name != 'Home' %}
     <article onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'">
@@ -25,6 +27,23 @@ La page 'Home' est la pierre angulaire du site. Celle-ci permet d'afficher les d
     {% endif %}
 {% endfor %}
 ```
+'Home' est aussi dans le tableau catégorie et il faut donc l'exclure de la boucle avec une condition.
+
+##### Utilisation des arguments
+Le lien de redirection vers la page de la catégorie ciblé est unique grace à l'utilisation de path_to et d'un argument.
+
+```twigs
+{{ path_for('article', { categorie: _categorie.categorie_link }) }}
+```
+
+#### PHP
+Pour la route de de 'Home', il suffit d'afficher le contenu de la table catégorie dans un ordre prédefinie.
+
+```php
+$query = $this->db->query('SELECT * FROM categorie ORDER BY classement');
+$categories = $query->fetchAll();
+```
+'classement' permet de modifier l'ordre d'affichages des catégories
 
 ### Installing
 
@@ -102,3 +121,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ___
 ! Les videos ne peuvent pas être versionnés sur git car trop volumineuses !
 ___
+
+# Slim Twig Project
