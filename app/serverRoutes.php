@@ -18,18 +18,18 @@ $container['notFoundHandler'] = function($container) {
 };
 
 // 500
-// $container['errorHandler'] = function($container) {
-//     return function($request, $response) use ($container)
-//     {
-//         $viewData = [
-//             'code' => 500,
-//             'title' => 500,
-//             'style' => 'style',
-//         ];
+$container['errorHandler'] = function($container) {
+    return function($request, $response) use ($container)
+    {
+        $viewData = [
+            'code' => 500,
+            'title' => 500,
+            'style' => 'style',
+        ];
 
-//         return $container['view']->render($response->withStatus(500), 'resources/error.twig', $viewData);
-//     };
-// };
+        return $container['view']->render($response->withStatus(500), 'resources/error.twig', $viewData);
+    };
+};
 
 // Home
 $app
