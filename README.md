@@ -1,4 +1,4 @@
-[English](# Slim Twig Project) - [Fançais](# Projet Slim Twig)
+[English](#-Slim-Twig-Project) - [Fançais](#-Projet-Slim-Twig)
 # Projet Slim Twig
 
 Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données. Il y a trois tableaux dans la base de donnée.
