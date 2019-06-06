@@ -13,7 +13,7 @@ Le fichier .htacces et l'index.php sont dans le dossier web.
 
 La page 'Home' est la pierre angulaire du site. Celle-ci permet d'afficher les différentes catégories à l'aide d'une boucle for.
 
-```twigs
+```twig
 {% for _categorie in categories %}
     {% if _categorie.categorie_name != 'Home' %}
     <article onclick="window.location='{{ path_for('article', { categorie: _categorie.categorie_link }) }}'">
