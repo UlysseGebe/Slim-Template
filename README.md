@@ -1,4 +1,4 @@
-[######English](#Slim-Twig-Project) - [######Fançais](#Projet-Slim-Twig)
+[English](#Slim-Twig-Project) - [Fançais](#Projet-Slim-Twig)
 # Projet Slim Twig
 
 Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données. Il y a trois tableaux dans la base de donnée.
@@ -6,6 +6,7 @@ Ce projet Slim Twig est un template pour portfolio axé pour les cinématographe
 ## Affichage du site
 
 Les differentes pages sont disposées de manière logique. Il y a une page "Home'" qui affiches les différentes catégories et chaque catégorie a un lien qui envoie vers une liste d'article, qui sont des présentations de différents projets. Cette partie du site utilise deux des trois tableaux.
+Le fichier .htacces et l'index.php sont dans le dossier web.
 
 ### Home
 #### TWIG
@@ -45,27 +46,33 @@ $categories = $query->fetchAll();
 ```
 'classement' permet de modifier l'ordre d'affichages des catégories
 
-### Installing
+### Pages catégories
 
-A step by step series of examples that tell you how to get a development env running
+#### TWIG
+Pour afficher le contenue des articles de la base de donnée, il faut utiliser une boucle for
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+```twig
+{% for _video in videos %}
+    <div class="work">
+        <video src="../assets/video/{{ _video.video_url }}" poster="../assets/image/{{ _video.video_poster }}">{{_video.video_fallback }}</video>
+        <legend>{{ _video.video_description }}</legend>
+    </div>
+{% endfor %}
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+#### PHP
+Les pages catégories contiennent tous les articles liées avec cette catégorie. Il faut donc selectionner les bons articles.
 
-Explain how to run the automated tests for this system
+```php
+$prepare = $this->db->prepare('SELECT * FROM video WHERE video_categorie = ? ORDER BY classement');
+$prepare->execute(array($arguments['categorie']));
+$video = $prepare->fetchAll();
+```
+
+## Modification du site
+Le possesseur du sute peut modifier les information de la base de donnée en se connecter a celle-ci via un systeme de login 
+Le fichier .htacces et l'index.php sont dans le dossier serveur.
 
 ### Break down into end to end tests
 
