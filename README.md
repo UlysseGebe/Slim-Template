@@ -5,7 +5,8 @@ ___
 [English](#Slim-Twig-Project) - [Fançais](#Projet-Slim-Twig)
 # Projet Slim Twig
 
-Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données. Il y a trois tableaux dans la base de données.
+Ce projet Slim Twig est un template pour portfolio axé pour les cinématographes et les cinéastes. On peut afficher du contenue via une base de données et modifier cette base de données. Il y a trois tableaux dans la base de données.<br/>
+Le style du front est personnel et le style du back et un framework CSS Bootstrap.
 
 ## Liste des features
 
@@ -152,7 +153,8 @@ ___
 [English](#Slim-Twig-Project) - [Fançais](#Projet-Slim-Twig)
 # Slim Twig Project
 
-This Slim Twig project is a portfolio template for cinematographers and filmmakers. You can display content via a database and modify this database. There are three tables in the database.
+This Slim Twig project is a portfolio template for cinematographers and filmmakers. You can display content via a database and modify this database. There are three tables in the database.<br/>
+The style of the front is personal and the style of the back and a CSS Bootstrap framework.
 
 ## Features list
 
